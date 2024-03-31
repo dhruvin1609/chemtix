@@ -106,7 +106,7 @@ Route::middleware('auth')->group(function(){
       // General Setting Routes
       Route::get('/general-setting',[GeneralSettingController::class,'create'])->name('setting.create');
       Route::post('/general-setting/store',[GeneralSettingController::class,'store'])->name('setting.store');
-      Route::post('/search/product',[GeneralSettingController::class,'searchProduct'])->name('search.product');
+      Route::get('/search/product',[GeneralSettingController::class,'searchProduct'])->name('search.product');
       Route::get('/search/supplier/product/{id}',[GeneralSettingController::class,'searchSupplierProduct'])->name('search.supplier.product');
       Route::get('/search/customer/product/{id}',[GeneralSettingController::class,'searchCustomerProduct'])->name('search.customer.product');
 

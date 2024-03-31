@@ -9,9 +9,6 @@
             <div class="col-sm-6">
                 <h1>Search Supplier</h1>
             </div>
-            <div class="col-sm-6 text-right">
-                <a href="" class="btn btn-primary">Back</a>
-            </div>
         </div>
     </div>
     <!-- /.container-fluid -->

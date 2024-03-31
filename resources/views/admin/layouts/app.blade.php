@@ -45,8 +45,7 @@
 				
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<form action="{{route('search.product')}}" id="search" method="post">
-							@csrf
+						<form action="{{route('search.product')}}" id="search" method="get">
 							<div class="input-group-append">
 								<select name="keyword" class="form-select select2" id="">
 									<option value="">Select a product</option>

@@ -23,7 +23,7 @@
         @if(!empty($data))
         <div class="card">
             <div class="card-body table-responsive p-0">								
-                <table class="table table-hover text-nowrap">
+                <table class="table table-hover text-nowrap" id="supplierTable">
                     <thead>
                         <tr>
                             <th>Supplier Name</th>
@@ -56,63 +56,13 @@
     <!-- /.card -->
 </section>
 <!-- /.content -->
-  
+
 @endsection
 
 @section('customJs')
 <script>
-    // $('#searchCustomer').submit(function(event){
-    //     event.preventDefault();
-    //     var form = $(this)[0];
-    //     var data = new FormData(form);
-    //    var element = $(this);
-    //    $("button[type=submit]").prop('disabled',true)
-    //     $.ajax({
-    //         url:'{{route("customer.get")}}',
-    //         type:'post',
-    //         data: element.serializeArray(),
-    //         dataType:'json',
-    //         success : function(res){
-    //             $("button[type=submit]").prop('disabled',false)
-    //             if(res['status']  == true) {
-
-    //                 window.location.reload();
-
-    //                 // $('#name').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("")
-    //                 // $('#slug').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("")
-
-    //             }else{
-    //                 toastr.error('Something went wrong');
-    //                 var errors = res['errors'];
-    //             if(errors['title']){
-    //                 $('#title').addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['title'])
-    //             } else{
-    //                 $('#title').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("")
-    //             }
-
-    //             if(errors['description']){
-    //                 $('#description').addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['description'])
-    //             }else{
-    //                 $('#description').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("")
-    //             }
-    //             if(errors['image']){
-    //                 $('#formFile').addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['image'])
-    //             }else{
-    //                 $('#formFile').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("")
-    //             }
-    //             }
-                
-    //         },
-    //         error : function(jqXHR,err){
-    //             console.log('Something went wrong')
-    //         }
-    //     })
-    // })
-
-      
-
-       
-        
+    $(document).ready(function() {
+        $('#supplierTable').DataTable();
+    });
 </script>
-
 @endsection

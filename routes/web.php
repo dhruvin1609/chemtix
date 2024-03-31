@@ -40,6 +40,7 @@ Route::get('/contact',[FrontController::class,'contact'])->name('front.contact')
 Route::get('/all-category',[FrontController::class,'all_category'])->name('front.all-cat');
 Route::get('/{slug}/category-products',[FrontController::class,'category_product'])->name('front.cate-prod');
 Route::post('/contact/submit',[FrontController::class,'contactSubmit'])->name('contact.submit');
+Route::post('/search/product/home',[FrontController::class,'searchProduct'])->name('search.product.home');
 Route::get('/login',[AuthController::class,'index'])->name('admin.login');
 Route::post('/authenticate',[AuthController::class,'authenticate'])->name('admin.authenticate');
 

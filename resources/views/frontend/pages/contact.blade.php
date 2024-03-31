@@ -102,6 +102,17 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+            var phone_number = window.intlTelInput(
+            document.querySelector("#phone_number"),
+            {
+                separateDialCode: true,
+                preferredCountries: ["in"],
+                hiddenInput: "full",
+                utilsScript:
+                "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+            }
+            );
+
             $("#contactForm").validate({
                 rules: {
                     name: {

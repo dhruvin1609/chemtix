@@ -59,8 +59,12 @@ class FrontController extends Controller
                 return redirect()->back()->with('success','Thanks for enquiry');
             }else{
                 return redirect()->back()->with('error','Something went wrong');
-            }
-       
-        
+            }  
+    }
+
+    public function searchProduct(Request $request){
+        $keyword = $request->product_search;
+        $data = Products::where('title','like','%'.$keyword.'%')->orWhere('cas_number','like','%'.$keyword.'%')->get();
+        return view('frontend.pages.search_product_home',compact('data'));
     }
 }

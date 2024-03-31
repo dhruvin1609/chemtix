@@ -121,7 +121,7 @@
           <img src="{{ asset('front-assets/chemtix_images/our_services.png') }}" class="img-fluid service_img" alt="">
         </div> --}}
         <div class="row">
-          <div class="col-lg-4 mt-5">
+          <div class="col-lg-4 mt-5 service-parent">
             <div class="service">
               <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
                   <div>
@@ -131,7 +131,7 @@
               </div>
           </div>
           </div>
-          <div class="col-lg-4 mt-5">
+          <div class="col-lg-4 mt-5 service-parent">
             <div class="service">
               <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
                   <div>
@@ -141,7 +141,7 @@
               </div>
           </div>
           </div>
-          <div class="col-lg-4 mt-5">
+          <div class="col-lg-4 mt-5 service-parent">
             <div class="service">
               <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
                   <div>
@@ -151,7 +151,7 @@
               </div>
           </div>
           </div>
-          <div class="col-lg-4 mt-5">
+          <div class="col-lg-4 mt-5 service-parent">
             <div class="service">
               <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
                   <div>
@@ -161,7 +161,7 @@
               </div>
           </div>
           </div>
-          <div class="col-lg-4 mt-5">
+          <div class="col-lg-4 mt-5 service-parent">
             <div class="service">
               <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
                   <div>
@@ -171,7 +171,7 @@
               </div>
           </div>
           </div>
-          <div class="col-lg-4 mt-5">
+          <div class="col-lg-4 mt-5 service-parent">
             <div class="service">
               <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
                   <div>
@@ -181,7 +181,7 @@
               </div>
           </div>
           </div>
-          <div class="col-lg-4 mt-5">
+          <div class="col-lg-4 mt-5 service-parent">
             <div class="service">
               <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
                   <div>
@@ -191,7 +191,7 @@
               </div>
           </div>
           </div>
-          <div class="col-lg-4 mt-5">
+          <div class="col-lg-4 mt-5 service-parent">
             <div class="service">
               <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
                   <div>
@@ -201,7 +201,7 @@
               </div>
           </div>
           </div>
-          <div class="col-lg-4 mt-5">
+          <div class="col-lg-4 mt-5 service-parent">
             <div class="service">
               <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
                   <div>

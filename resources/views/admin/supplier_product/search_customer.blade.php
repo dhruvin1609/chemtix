@@ -23,7 +23,7 @@
         @if(!empty($data))
         <div class="card">
             <div class="card-body table-responsive p-0">								
-                <table class="table table-hover text-nowrap">
+                <table class="table table-hover text-nowrap" id="customerTable">
                     <thead>
                         <tr>
                             <th>Customer Name</th>
@@ -50,16 +50,19 @@
             </div>
         </div>
         @else
-        <h3>Data not found for this supplier</h3>
+        <h3>Data not found for this customer</h3>
         @endif
     </div>
     <!-- /.card -->
 </section>
 <!-- /.content -->
-  
+
 @endsection
 
 @section('customJs')
-
-
+<script>
+    $(document).ready(function() {
+        $('#customerTable').DataTable();
+    });
+</script>
 @endsection

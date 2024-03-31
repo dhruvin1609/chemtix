@@ -14,7 +14,6 @@
         <link rel="stylesheet" href="{{asset('admin-assets/plugins/dropzone/min/dropzone.min.css')}}">
 		{{-- <link rel="stylesheet" href="{{asset('admin-assets/plugins/summernote/summernote.min.css')}}"> --}}
 		<link rel="stylesheet" href="{{asset('admin-assets/plugins/select2/css/select2.min.css')}}">
-		<link rel="stylesheet" href="{{asset('admin-assets/css/datetimepicker.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />		<!-- Theme style -->
 		<link rel="stylesheet" href="{{asset('admin-assets/css/adminlte.min.css')}}">
 		<link rel="stylesheet" href="{{asset('admin-assets/css/adminlte.min.css')}}">
@@ -108,7 +107,6 @@
         <script src="{{asset('admin-assets/plugins/dropzone/min/dropzone.min.js')}}"></script>
 		{{-- <script src="{{asset('admin-assets/plugins/summernote/summernote.min.js')}}"></script> --}}
 		<script src="{{asset('admin-assets/plugins/select2/js/select2.min.js')}}"></script>
-		<script src="{{asset('admin-assets/js/datetimepicker.js')}}"></script>
 		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 		<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>        

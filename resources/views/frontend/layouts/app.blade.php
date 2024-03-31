@@ -5,10 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">.
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('front-assets/chemtix_images/fav-icon.png')}}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('front-assets/chemtix_images/fav-icon.png') }}" />
     <title>
         Chemtix
     </title>
+    <style>
+        #newInput {
+            display: none;
+        }
+    </style>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"
@@ -69,14 +74,17 @@
                                 <!--<li><a href="our-team">Our Team</a></li>-->
                             </ul>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('front.contact') }}">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
+                        <li class="nav-item" id="searchLi">
+                            <button class="btn btn-primary" id="searchBtn"><i class="fa fa-search"
+                                    aria-hidden="true"></i></button>
+                        </li>
+                        <li class="nav-item" id="search_bar">
+                            <form action="{{ route('search.product.home') }}" id="product_search" method="POST">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
 
@@ -85,31 +93,42 @@
         </nav>
     </header>
     <div id="content">
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Search Products</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="">
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="" class="form-label">Search Product by Name and CAS number</label>
-                                <input type="text" class="form-control" name="" id=""
-                                    aria-describedby="helpId" placeholder="" />
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Search</button>
-                        </div>
-                    </form>
+        <div id='whatsapp-chat' class='hide'>
+            <div class='header-chat'>
+                <div class='head-home'>
+                    <h3>Hello!</h3>
+                    <p>Click one of our representatives below to chat on WhatsApp or send us an email to
+                        info@chemtix.in</p>
+                </div>
+                <div class='get-new hide'>
+                    <div id='get-label'></div>
+                    <div id='get-nama'></div>
                 </div>
             </div>
+            <div class='home-chat'>
+                <!-- Info Contact Start -->
+                <a class='informasi' href='javascript:void' title='Chat Whatsapp'>
+                    <div class='info-avatar'><img
+                            src='https://2.bp.blogspot.com/-y6xNA_8TpFo/XXWzkdYk0MI/AAAAAAAAA5s/RCzTBJ_FbMwVt5AEZKekwQqiDNqdNQJjgCLcBGAs/s70/supportmale.png' />
+                    </div>
+                    <div class='info-chat'>
+                        <span class='chat-label'>Support</span>
+                        <span class='chat-nama'>Customer Service 1</span>
+                    </div><span class='my-number'>9723402903</span>
+                </a>
+                <!-- Info Contact End -->
+                <div class='blanter-msg'>Call us to <b>+919723402903</b> from <i>0:00hs a 24:00hs</i></div>
+            </div>
+            <div class='start-chat hide'>
+                <div class='first-msg'><span>Hello! What can I do for you?</span></div>
+                <div class='blanter-msg'>
+                    <textarea id='chat-input' placeholder='Write a response' maxlength='120' row='1'></textarea>
+                    <a href='javascript:void;' id='send-it'>Send</a>
+                </div>
+            </div>
+            <div id='get-number'></div><a class='close-chat' href='javascript:void'>×</a>
         </div>
+        <a class='blantershow-chat' href='javascript:void' title='Show Chat'><i class='fab fa-whatsapp'></i></a>
         @yield('content')
         {{-- <div class="footer-career sec-space-both">
             <div class="container">
@@ -133,7 +152,13 @@
             <div class="foot-link sec-space-both">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5845.984503451503!2d72.54224691847274!3d23.095147047394853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83fedef840d9%3A0x2291a16bd1dd7896!2sChemtix!5e0!3m2!1sen!2sin!4v1711895093222!5m2!1sen!2sin"
+                                width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <h4 class="menu_title">Company Details</h4>
                             <ul class="footlink-inner">
                                 <li>
@@ -151,7 +176,7 @@
                             </ul>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                             <h4 class="menu_title">Our Products</h4>
                             <ul class="footlink-inner">
                                 @foreach (getProducts() as $item)
@@ -159,18 +184,18 @@
                                 @endforeach
                             </ul>
                         </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <h4 class="menu_title">Industries</h4>
-                            <ul class="footlink-inner">
-                                <li><a href="">Abrasive Agro Chemicals</a></li>
-                                <li><a href="">Auxiliary chemicals</a></li>
-                                <li><a href="">Food & Beverages Sector </a></li>
-                                <li><a href="">Other Fine Chemical Sectors</a></li>
-                                <li><a href="">Pharmaceuticals raw materials</a></li>
-                                <li><a href="">Bulk drugs</a></li>
-                            </ul>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="let_talk">
+                                <p>Lets Talk</p>
+                            </div>
+                            <div class="email-div">
+                                <p>email</p>
+                            </div>
+                            <div class="inquiry-now">
+                                <p>inquiry-now</p>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -205,8 +230,8 @@
         <a href="//www.dmca.com/Protection/Status.aspx?ID=95343330-4902-4781-9e66-4ae9962d7cdc" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w150-5x1-06.png?ID=95343330-4902-4781-9e66-4ae9962d7cdc"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
     </div> -->
         </footer>
-        <a id="back-button"><img loading="lazy" src="{{asset('image/top.webp')}}" alt="top-scroll" /></a>
- 
+        <a id="back-button"><img loading="lazy" src="{{ asset('image/top.webp') }}" alt="top-scroll" /></a>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
@@ -214,7 +239,7 @@
         <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
         <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.js">
         </script>
-            <script defer src="https://kit.fontawesome.com/b1100a39cb.js" crossorigin="anonymous"></script>
+        <script defer src="https://kit.fontawesome.com/b1100a39cb.js" crossorigin="anonymous"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
             integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -224,6 +249,17 @@
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
         <script defer src="{{ asset('front-assets/js/main.js') }}"></script>
+
+        <script>
+            $(document).ready(function() {
+                $(document).on('click', '#searchBtn', function(e) {
+                    $("#searchLi").hide();
+                    $("#product_search").append(
+                        '<input type="text" name="product_search" class="form-control" placeholder="search...">'
+                        )
+                })
+            })
+        </script>
         @yield('customJS')
     </div>
 </body>

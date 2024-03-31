@@ -4,17 +4,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" sizes="16x16" href="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">.
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('front-assets/chemtix_images/fav-icon.png')}}" />
     <title>
         Chemtix
     </title>
 
-    <link rel="canonical" href="https://quarkssystems.com/" />
-    <link rel="shortcut icon" href="https://quarkssystems.com/image/favicon.svg" />
-    <link rel="apple-touch-icon" href="https://quarkssystems.com/image/favicon.svg" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"
         data-async />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css"
+        rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" data-async />
@@ -29,7 +29,7 @@
     <header id="main-header qsd">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand" href="{{ route('front.index') }}">
                     <img
                         src="@if (!empty(genrealSetting())) {{ asset('images/setting/' . genrealSetting()->primary_logo) }}" @endif alt="">
                 </a>
@@ -94,27 +94,27 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="" class="form-label">Search Product by Name and CAS number</label>
-                            <input type="text" class="form-control" name="" id=""
-                                aria-describedby="helpId" placeholder="" />
-                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="" class="form-label">Search Product by Name and CAS number</label>
+                                <input type="text" class="form-control" name="" id=""
+                                    aria-describedby="helpId" placeholder="" />
+                            </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Search</button>
-                    </div>
-                </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
         @yield('content')
-        <div class="footer-career sec-space-both">
+        {{-- <div class="footer-career sec-space-both">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12">
+                    <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12 mt-4">
                         <div class="career-lt">
                             <div class="sec-title text-left">
                                 <h2>Looking for <span>Chemicals? </span></h2>
@@ -123,12 +123,12 @@
                     </div>
                     <div class="col-lg-6 col-md-5 col-sm-12 col-xs-12">
                         <div class="career-rt text-right">
-                            <a href="" class="common-btn">Contact us now</a>
+                            <a href="{{ route('front.contact') }}" class="common-btn">Contact us now</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <footer>
             <div class="foot-link sec-space-both">
                 <div class="container">
@@ -136,7 +136,9 @@
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <h4 class="menu_title">Company Details</h4>
                             <ul class="footlink-inner">
-                                <li><p>{{ genrealSetting()->company_name }}</p></li>
+                                <li>
+                                    <p>{{ genrealSetting()->company_name }}</p>
+                                </li>
                                 <li>
                                     <a>{{ genrealSetting()->company_email }}</a>
                                 </li>
@@ -153,7 +155,7 @@
                             <h4 class="menu_title">Our Products</h4>
                             <ul class="footlink-inner">
                                 @foreach (getProducts() as $item)
-                                <li><a href="{{ route('front.product') }}">{{ $item->title }}</a></li>
+                                    <li><a href="{{ route('front.product') }}">{{ $item->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -203,19 +205,16 @@
         <a href="//www.dmca.com/Protection/Status.aspx?ID=95343330-4902-4781-9e66-4ae9962d7cdc" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w150-5x1-06.png?ID=95343330-4902-4781-9e66-4ae9962d7cdc"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
     </div> -->
         </footer>
-        <a id="back-button"><img loading="lazy" src="image/top.webp" alt="top-scroll" /></a>
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
-            integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-       
+        <a id="back-button"><img loading="lazy" src="{{asset('image/top.webp')}}" alt="top-scroll" /></a>
+ 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
         </script>
-        <script defer src="https://kit.fontawesome.com/b1100a39cb.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
         <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.js">
         </script>
+            <script defer src="https://kit.fontawesome.com/b1100a39cb.js" crossorigin="anonymous"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
             integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -223,13 +222,7 @@
             integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        <script src="https://cdn.websitepolicies.io/lib/cconsent/cconsent.min.js" defer></script>
-        <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.2/jquery.matchHeight-min.js"
-            crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"
-            integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
         <script defer src="{{ asset('front-assets/js/main.js') }}"></script>
         @yield('customJS')
     </div>

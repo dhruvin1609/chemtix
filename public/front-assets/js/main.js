@@ -217,3 +217,27 @@ $("#menu_3 > a").click(function () {
 
 AOS.init({duration : 1200});
 
+var input = document.querySelector("#phone_number"),
+  errorMsg = document.querySelector("#error-msg"),
+  validMsg = document.querySelector("#valid-msg");
+
+// here, the index maps to the error code returned from getValidationError - see readme
+var errorMap = [
+  "Invalid number",
+  "Invalid country code",
+  "Too short",
+  "Too long",
+  "Invalid number"
+];
+
+var phone_number = window.intlTelInput(
+  document.querySelector("#phone_number"),
+  {
+    separateDialCode: true,
+    preferredCountries: ["in"],
+    hiddenInput: "full",
+    utilsScript:
+      "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+  }
+);
+

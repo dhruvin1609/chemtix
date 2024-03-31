@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -354,9 +355,9 @@ position: relative;
 header li.nav-item {
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 38px;
-    padding: 15px 20px;
+    padding: 15px 9px;
     position: relative;
     color: #333333;
 }
@@ -554,6 +555,10 @@ span.hamburger svg.e-font-icon-svg.e-fas-align-justify {
 }
 .banner-image img { 
   width: 100%
+}
+
+.banner-slide{
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(194,223,255,0.8464635854341737) 100%);
 }
 
 .banner-slide .owl-carousel .owl-item img {
@@ -1903,6 +1908,9 @@ position:relative;
 .our-values{
   background-color: #f3f3f3;
 }
+.our-service{
+  background: #f3f3f3;
+}
 .ie-txt{
   width: 300px;
   font-size: 18px;
@@ -1929,10 +1937,14 @@ position:relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 20rem;
 }
 .product-detail span{
   font-weight: 700;
   color: #0F4989;
+}
+.product-img-div{
+  height: 13rem;
 }
 .product-btn{
   background-color: #0F4989;
@@ -2192,3 +2204,67 @@ position:relative;
   font-weight: 700;
 }
 /* search bar CSS */
+
+.iti__flag {
+  background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/img/flags.png");
+}
+
+.hide {
+  display: none !important;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/img/flags@2x.png");
+  }
+}
+
+input.error {
+  border-color: red;
+}
+
+.message-dull {
+  display: block;
+  margin-top: 5px;
+
+  &#error-msg {
+    color: red;
+  }
+
+  &#valid-msg {
+    color: green;
+  }
+}
+.iti--separate-dial-code{
+  width: 100%;
+}
+.nav-item:hover{
+  border-top: 5px solid #0F4989;
+}
+.Solutions_icon {
+  width: 62px;
+  height: 62px;
+}
+.Solutions_icon img {
+  max-width: 100%;
+}
+.Solutions_title {
+  padding-left: 8px;
+  font-size: 22px;
+  font-weight: 400;
+  color: #262626;
+}
+.service_img{
+  height: 26rem;
+  width: 50rem;
+}
+.vision-img img{
+  height: 30rem;
+}
+.import-export {
+  background-image: url(/front-assets/chemtix_images/import-export.png);
+  background-size: 95rem 50rem;
+  background-repeat: no-repeat;
+  height: 115vh;
+  padding-top: 100px;
+}

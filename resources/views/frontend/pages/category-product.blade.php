@@ -16,8 +16,10 @@
                     <div class="card product-card-detail" data-aos="zoom-out" style="width: 24rem;">
                         <div class="row">
                             <div class="col-lg-6">
-                                <img src="{{asset('images/product/'.$item->image)}}" alt="" class="product-img">
-                                <div class="button d-flex justify-content-center align-items-center">
+                                <div class="product-img-div">
+                                    <img src="{{asset('images/product/'.$item->image)}}" alt="" class="product-img mt-3">
+                                </div>
+                                <div class="button btn-div d-flex justify-content-center align-items-center">
                                     <a href="" class="btn btn-sm product-btn">Inquiry this product</a>
                                 </div>
                             </div>

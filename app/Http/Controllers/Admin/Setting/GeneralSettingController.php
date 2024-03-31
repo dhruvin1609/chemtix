@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin\Setting;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomerProduct;
 use App\Models\GeneralSetting;
+use App\Models\Products;
+use App\Models\SupplierProduct;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -87,5 +90,20 @@ class GeneralSettingController extends Controller
         }else{
             return response()->json(['status' => false , 'errors' => $validator->errors()]);
         }
+    }
+
+    public function searchProduct(Request $request){
+        $product_id = $request->keyword;
+        $product_data = Products::where('id',$product_id)->with('getCategory')->first();
+        return view('admin.products.search_product',compact('product_id','product_data'));
+    }
+
+    public function searchSupplierProduct($id){
+        $data = SupplierProduct::where('product_id',$id)->with('getSupplierName')->get();
+        return view('admin.supplier_product.search_supplier',compact('data'));
+    }
+    public function searchCustomerProduct($id){
+        $data = CustomerProduct::where('product_id',$id)->with('getCustomerName')->get();
+        return view('admin.supplier_product.search_customer',compact('data'));
     }
 }

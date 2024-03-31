@@ -17,7 +17,7 @@
                     A Reliable Company to Work with Then You're Onto a Good Thing, Carefully Identified the Best
                     Strategic Partners.
                   </p>
-                  <a href="" class="common-btn">Contact now</a>
+                  <a href="{{ route('front.contact') }}" class="common-btn">Enquiry Now</a>
                 </div>
               </div>
               <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -41,7 +41,7 @@
                   <p>
                     Meeting Or Exceeding Customer Expectations.
                   </p>
-                  <a href="" class="common-btn">Hire Our Experts</a>
+                  <a href="{{ route('front.contact') }}" class="common-btn">Enquiry Now</a>
                 </div>
               </div>
               <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -64,7 +64,7 @@
                   <p>
                     Faster delivery gurented across all over india.
                   </p>
-                  <a href="" class="common-btn">Transform Your Business</a>
+                  <a href="{{ route('front.contact') }}" class="common-btn">Enquiry Now</a>
                 </div>
               </div>
               <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -97,7 +97,7 @@
               renowned API, Pharmaceutical Intermediate, Nutraceuticals , Herbal Extracts, Industrial Chemicals, and
               Solvents for manufacturing , supplying, sourcing and marketing company
             </p>
-            <a href="" class="common-btn">Explore our company</a>
+            <a href="{{ route('front.about') }}" class="common-btn">Explore our company</a>
           </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 abpic">
@@ -117,7 +117,103 @@
             Global Sourcing and Marketing Company
           </p>
         </div>
+        {{-- <div class="d-flex justify-content-center align-items-center">
+          <img src="{{ asset('front-assets/chemtix_images/our_services.png') }}" class="img-fluid service_img" alt="">
+        </div> --}}
         <div class="row">
+          <div class="col-lg-4 mt-5">
+            <div class="service">
+              <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
+                  <div>
+                      <div class="Solutions_icon"><img src="{{('front-assets/chemtix_images/importexport.png')}}" alt=""></div>
+                  </div>
+                  <div class="Solutions_title">Import & Export</div>
+              </div>
+          </div>
+          </div>
+          <div class="col-lg-4 mt-5">
+            <div class="service">
+              <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
+                  <div>
+                      <div class="Solutions_icon"><img src="{{('front-assets/chemtix_images/sourcing.png')}}" alt=""></div>
+                  </div>
+                  <div class="Solutions_title">Sourcing & Distribution</div>
+              </div>
+          </div>
+          </div>
+          <div class="col-lg-4 mt-5">
+            <div class="service">
+              <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
+                  <div>
+                      <div class="Solutions_icon"><img src="{{('front-assets/chemtix_images/marketing.png')}}" alt=""></div>
+                  </div>
+                  <div class="Solutions_title">Marketing Analysis & Intelligence</div>
+              </div>
+          </div>
+          </div>
+          <div class="col-lg-4 mt-5">
+            <div class="service">
+              <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
+                  <div>
+                      <div class="Solutions_icon"><img src="{{('front-assets/chemtix_images/material.png')}}" alt=""></div>
+                  </div>
+                  <div class="Solutions_title">Best Quality of Material</div>
+              </div>
+          </div>
+          </div>
+          <div class="col-lg-4 mt-5">
+            <div class="service">
+              <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
+                  <div>
+                      <div class="Solutions_icon"><img src="{{('front-assets/chemtix_images/time.png')}}" alt=""></div>
+                  </div>
+                  <div class="Solutions_title">Quick Material at Time</div>
+              </div>
+          </div>
+          </div>
+          <div class="col-lg-4 mt-5">
+            <div class="service">
+              <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
+                  <div>
+                      <div class="Solutions_icon"><img src="{{('front-assets/chemtix_images/quality.png')}}" alt=""></div>
+                  </div>
+                  <div class="Solutions_title">Trouble Free Experience</div>
+              </div>
+          </div>
+          </div>
+          <div class="col-lg-4 mt-5">
+            <div class="service">
+              <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
+                  <div>
+                      <div class="Solutions_icon"><img src="{{('front-assets/chemtix_images/documentation.png')}}" alt=""></div>
+                  </div>
+                  <div class="Solutions_title">Documentation and compliance</div>
+              </div>
+          </div>
+          </div>
+          <div class="col-lg-4 mt-5">
+            <div class="service">
+              <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
+                  <div>
+                      <div class="Solutions_icon"><img src="{{('front-assets/chemtix_images/support.png')}}" alt=""></div>
+                  </div>
+                  <div class="Solutions_title">After sales support</div>
+              </div>
+          </div>
+          </div>
+          <div class="col-lg-4 mt-5">
+            <div class="service">
+              <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
+                  <div>
+                      <div class="Solutions_icon"><img src="{{('front-assets/chemtix_images/technical-support.png')}}" alt=""></div>
+                  </div>
+                  <div class="Solutions_title">Analytical data support</div>
+              </div>
+          </div>
+          </div>
+         
+        </div>
+        {{-- <div class="row">
           <div class="col-lg-3">
             <div class="single-box">
               <img src="{{asset('front-assets/chemtix_images/global-search.png')}}" alt="" class="img-fluid svc-img">
@@ -150,7 +246,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
     </section>
 

@@ -14,3 +14,7 @@ function genrealSetting(){
 function getProducts(){
     return Products::latest()->take(6)->get();
 }
+
+function getAllProduct(){
+    return Products::select('id','title','cas_number')->get();
+}

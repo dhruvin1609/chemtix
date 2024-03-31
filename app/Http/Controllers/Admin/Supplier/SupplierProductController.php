@@ -125,13 +125,11 @@ class SupplierProductController extends Controller
     public function getProductData(Request $request){
         $new_data=[];
         $supplier_id = $request->customer_name;
-        // dd($customer_id);
         $data = SupplierProduct::where('supplier_id',$supplier_id)->get();
         foreach ($data as $item) {
             $new_data[]=$item->product_id;
         }
         $product = Products::whereIn('id',$new_data)->with('getCategory')->get();
-        // dd($product);
         return view('admin.search_supplier.index',compact('product'));
     }
 }

@@ -32,64 +32,14 @@
 </section>
 
 <section class="our-values sec-space-both">
-    <div class="container">
-        <h1 class="text-center section-title">Know us Better</h1>
-        <div class="row mt-5">
-            <div class="col-lg-6">
-                <div class="card mt-2 know-card">
-                    <div class="card-header card-head ">
-                        Company philosofy
-                    </div>
-                    <div class="card-body">
-                        We believe "Undertaking Ethical Dealing ". constant accomplishments are made to
-                        emphasize perfect consistency to these ethical standards. We have taken ways to chase
-                        total consistency to the Management of Business Ethics system in our organisation.
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card mt-2 know-card">
-                    <div class="card-header card-head">
-                        Our values
-                    </div>
-                    <div class="card-body">
-                        Jigs Chemical is keeping all promises made within and outside the organisation and we
-                        are a benchmark company with respect to our products and services.
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card mt-2 know-card">
-                    <div class="card-header card-head">
-                        Quality
-                    </div>
-                    <div class="card-body">
-                        Quality has been a major focus of Jigs Chemical both in terms of human resources and
-                        products of Pharmaceutical bulk drugs. We supply our clients with the array of
-                        documentation required with new drug applications (NDA) and DMF registration for generic
-                        API's and their respective Intermediates .
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="card mt-2 know-card">
-                    <div class="card-header card-head">
-                        How we work
-                    </div>
-                    <div class="card-body">
-                        We act as a complete facilitating associate between our client Pharmaceutical companies
-                        and our trustworthy and most reliable partner of supplier companies. We recognize the
-                        specific requirements with exceeding expectations of our client Pharmaceutical companies
-                        for API - Active Pharmaceutical Ingredients, Intermediates & Chemicals, other
-                        Pharmaceutical Raw materials, chemicals and Excipients.
-                    </div>
-                </div>
-            </div>
+    <div class="container">     
+        <div class="vision-img d-flex justify-content-center align-items-center">
+            <img src="{{asset('front-assets/chemtix_images/vision.png')}}" class="img-fluid" alt="">
         </div>
     </div>
 </section>
 
-<section class="import-export sec-space-both">
+<section class="import-export">
     <div class="container">
         <div class="sec-title text-center">
             <h2 style="color: #0f4989;">Import & Export</h2>
@@ -112,6 +62,6 @@
             </div>
         </div>
     </div>
-    <img src="{{asset('front-assets/chemtix_images/image-002.jpg')}}" alt="" class="img-fluid">
+    {{-- <img src="{{asset('front-assets/chemtix_images/image-002.jpg')}}" alt="" class="img-fluid"> --}}
 </section>
 @endsection

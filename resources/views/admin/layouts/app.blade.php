@@ -46,6 +46,22 @@
 				
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
+						<form action="{{route('search.product')}}" id="search" method="post">
+							@csrf
+							<div class="input-group-append">
+								<select name="keyword" class="form-select select2" id="">
+									<option value="">Select a product</option>
+									@foreach (getAllProduct() as $item)
+									<option value="{{ $item->id }}">{{ $item->cas_number }} - {{ $item->title }}</option>
+									@endforeach
+								</select>
+								<button type="submit" class="btn btn-default">
+									<i class="fas fa-search"></i>
+								</button>
+							</div>
+						</form>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" data-widget="fullscreen" href="#" role="button">
 							<i class="fas fa-expand-arrows-alt"></i>
 						</a>
@@ -93,11 +109,13 @@
 		{{-- <script src="{{asset('admin-assets/plugins/summernote/summernote.min.js')}}"></script> --}}
 		<script src="{{asset('admin-assets/plugins/select2/js/select2.min.js')}}"></script>
 		<script src="{{asset('admin-assets/js/datetimepicker.js')}}"></script>
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 		<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>        
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+		<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+        <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.js">
+        </script>
 		<script type="text/javascript">
                 $.ajaxSetup({
                     headers: {
@@ -105,21 +123,30 @@
                     }
                 });
 
-				$(document).ready(function() {
-					$('.select2').select2();
-				});
+				
 
 				$(document).ready( function () {
 					$('.dataTable').DataTable({
 						paging:false
 					});
-				});
-
-				$(document).ready(function(){
 					$(".summernote").summernote({
 						height:250,
+					});
+					$('.select2').select2();
+					$("#search").validate({
+						ignore:[],
+						debug:false,
+						rules:{
+							keyword:{
+								required:true,
+							},
+						},
+						messages:{
+							keyword:"Please select a product",
+						}
 					})
-				})
+				});
+
         </script>
 
         @yield('customJs')

@@ -558,7 +558,11 @@ span.hamburger svg.e-font-icon-svg.e-fas-align-justify {
 }
 
 .banner-slide{
+  margin-top: -37px;
   background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(194,223,255,0.8464635854341737) 100%);
+}
+.p-60{
+  padding: 60px 0px;
 }
 
 .banner-slide .owl-carousel .owl-item img {
@@ -597,7 +601,58 @@ span.hamburger svg.e-font-icon-svg.e-fas-align-justify {
 a.navbar-brand img{
     padding: 0px 0px;
 }
+.mh-5{
+  min-height: 5rem;
+}
+.mh-5 span i{
+  font-size: 38px;
+  color: #0F4989;
+}
+.mail-text{
+  font-weight: 300;
+  font-size: 15px;
+}
+.let_talk {
+  display: flex;
+  align-items: center; /* Center vertically */
+}
 
+.let_talk span {
+  margin-right: 3.5rem; /* Add some spacing between icon and text */
+}
+.let_talk p {
+  margin-top: 10px;
+  color: #000000;
+  font-weight: 700;
+}
+.social-links i{
+  font-size: 20px;
+}
+@media (max-width: 768px) {
+  .product-card-detail {
+      width: 100%;
+      height: 60vh !important;
+  }
+
+  .product-img-div {
+      text-align: center;
+      padding: 10px;
+  }
+
+  .product-detail {
+      padding-top: 15px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .ie-txt {
+      font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}
+.vision-text li {
+  margin: 20px;
+  font-size: 18px;
+  font-weight: 700;
+}
 
 .cl-all {
   overflow: hidden;
@@ -2270,7 +2325,6 @@ input.error {
 }
 .service-parent{
   display: flex;
-  justify-content:center ;
   align-items: center;
 }
 

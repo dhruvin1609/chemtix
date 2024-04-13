@@ -32,14 +32,48 @@
 </section>
 
 <section class="our-values sec-space-both">
-    <div class="container">     
-        <div class="vision-img d-flex justify-content-center align-items-center">
-            <img src="{{asset('front-assets/chemtix_images/vision.png')}}" class="img-fluid" alt="">
-        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <img class="img-fluid" src="{{ asset('front-assets/chemtix_images/vision_img.png') }}" style="height: 30rem;width:35rem;" alt="">
+            </div>
+            <div class="col-lg-6">
+                <div class="sec-title text-center">
+                    <h2>Our <span style="color:#0f4989">Vision</span></h2>
+                </div>
+                <ul class="vision-text mt-5">
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Take a place at the edge of chemical</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Expand the utility of chemical</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Upgrade the user Experience with dealing with us</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Making supply units for quick shipping</li>
+                </ul>
+            </div>
+        </div>    
+    </div>
+</section>
+<section class="our-values sec-space-both">
+    <div class="container">
+        <div class="row">
+           
+            <div class="col-lg-6">
+                <div class="sec-title text-center">
+                    <h2>Our <span style="color:#0f4989">Mission</span></h2>
+                </div>
+                <ul class="vision-text mt-5">
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> We aim to Provide Best Material</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Competitive price with best service</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Constantly improvising the supply chain to enhance the product,quality and service</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> We can provide integrated sourcing services for our customers</li>
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <img class="img-fluid" src="{{ asset('front-assets/chemtix_images/our_mission.png') }}" style="height: 30rem;width:35rem;" alt="">
+            </div>
+        </div>    
     </div>
 </section>
 
-<section class="import-export">
+<section class="import-export" style="background-image: url(/front-assets/chemtix_images/import-export.png);">
     <div class="container">
         <div class="sec-title text-center">
             <h2 style="color: #0f4989;">Import & Export</h2>
@@ -62,6 +96,6 @@
             </div>
         </div>
     </div>
-    {{-- <img src="{{asset('front-assets/chemtix_images/image-002.jpg')}}" alt="" class="img-fluid"> --}}
 </section>
+
 @endsection

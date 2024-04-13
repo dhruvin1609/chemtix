@@ -149,7 +149,7 @@
             </div>
         </div> --}}
         <footer>
-            <div class="foot-link sec-space-both">
+            <div class="foot-link p-60">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -185,14 +185,23 @@
                             </ul>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <div class="let_talk">
-                                <p>Lets Talk</p>
+                            <div class="let_talk mh-5">
+                                    <span>
+                                        <i class="fa-solid fa-square-phone-flip"></i>
+                                    </span>
+                                    <p>Lets Talk</p>
                             </div>
-                            <div class="email-div">
-                                <p>email</p>
+                            <div class="let_talk mh-5">
+                                    <span>
+                                        <i class="fa-solid fa-envelope-open-text"></i>
+                                    </span>
+                                    <p>Business Inquiry <br> <span class="mail-text">info@chemtix.in</span></p>
                             </div>
-                            <div class="inquiry-now">
-                                <p>inquiry-now</p>
+                            <div class="let_talk mh-5">
+                                    <span>
+                                        <i class="fa-brands fa-telegram"></i>
+                                    </span>
+                                    <p>PR or Media</p>
                             </div>
                         </div>
 
@@ -211,16 +220,29 @@
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                            {{-- <ul class="pagelink">
+                                    <li>
+                                        <a href="" target="blank" class="social-links"><i class="fab fa-instagram"></i></a>
+                                    </li>
+        
+                                    <li>
+                                        <a href="" target="blank" class="social-links"><i class="fab fa-linkedin-in"></i></a>
+                                    </li>
+        
+                                    <li>
+                                        <a href="" target="blank" class="social-links"><i class="fab fa-facebook"></i></a>
+                                    </li>
+        
+                                    <li>
+                                        <a href="" target="blank" class="social-links"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                            </ul> --}}
                             <ul class="pagelink">
-                                <li><a href="">About</a></li>
-                                <li><a href="">Career</a></li>
-                                <li><a href="">Portfolio</a></li>
-                                <li><a href="">Blog</a></li>
-                                <li><a href="">Sitemap</a></li>
-                                <li><a href="">Privacy Policy</a></li>
-                                <li>
-                                    <a href="">Terms and Conditions</a>
-                                </li>
+                                <li> <a href="javascript:void(0)"><i class="fa fa-youtube" aria-hidden="true" style="margin: 10px;font-size:20px;color:white;"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-github" aria-hidden="true" style="margin: 10px;font-size:20px;color:white;"></i></a></li>
+                                <li> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true" style="margin: 10px;font-size:20px;color:white;"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true" style="margin: 10px;font-size:20px;color:white;"></i></a></li>
+                                
                             </ul>
                         </div>
                     </div>

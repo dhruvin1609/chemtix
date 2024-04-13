@@ -253,18 +253,53 @@
   <section class="hire sec-space-both">
     <div class="container">
       <div class="sec-title text-center">
-        <h2>Exclusive Marketing Of Several Category Products</h2>
+        <h2>Exclusive Marketing Of Several Category</h2>
       </div>
       <div class="row mt-5 d-flex justify-content-center align-items-center">
-        @foreach ($products as $item)
-        <div class="col-md-3 col-lg-3 d-flex align-items-stretch mb-5 text-center">
+        {{-- @foreach ($products as $item) --}}
+        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
           <div class="icon-box">
-            <img src="{{asset('images/product/'.$item->image)}}" class="card-img-top product-image" alt="...">
+            <img src="{{asset('front-assets/chemtix_images/chemicals_cat.png')}}" class="card-img-top product-image" alt="...">
             <hr>
-            <h5 class="card-title">{{ $item->title }}</h5>
+            <a href="{{ route('front.cate-prod','chemical') }}"><h5 class="card-title">Chemicals</h5></a>
           </div>
         </div>
-        @endforeach
+        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+          <div class="icon-box">
+            <img src="{{asset('front-assets/chemtix_images/intermediate_cat.png')}}" class="card-img-top product-image" alt="...">
+            <hr>
+            <a href="{{ route('front.cate-prod','intermediates') }}"><h5 class="card-title">Intermediate</h5></a>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+          <div class="icon-box">
+            <img src="{{asset('front-assets/chemtix_images/solvent_cat.png')}}" class="card-img-top product-image" alt="...">
+            <hr>
+            <a href="{{ route('front.cate-prod','solvent') }}"><h5 class="card-title">Solvent</h5></a>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+          <div class="icon-box">
+            <img src="{{asset('front-assets/chemtix_images/api_cat.png')}}" class="card-img-top product-image" alt="...">
+            <hr>
+            <a href="{{ route('front.cate-prod','api') }}"><h5 class="card-title">API</h5></a>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+          <div class="icon-box">
+            <img src="{{asset('front-assets/chemtix_images/rice field-rafiki.png')}}" class="card-img-top product-image" alt="...">
+            <hr>
+            <a href="{{ route('front.cate-prod','agro-industries') }}"><h5 class="card-title">Agro Industries</h5></a>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+          <div class="icon-box">
+            <img src="{{asset('front-assets/chemtix_images/beaker chemistry-rafiki.png')}}" class="card-img-top product-image" alt="...">
+            <hr>
+            <a href="{{ route('front.cate-prod','fine-chemicals') }}"><h5 class="card-title">Fine Chemicals</h5></a>
+          </div>
+        </div>
+        {{-- @endforeach --}}
     
       </div>
      

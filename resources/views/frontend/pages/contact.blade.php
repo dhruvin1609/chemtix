@@ -10,22 +10,22 @@
 
     <section class="contact-form sec-space-both">
         <div class="container d-flex justify-content-center align-items-center">
-            @if(Session::has('success'))
+            @if (Session::has('success'))
                 <div class="col-md-12">
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {!!Session::get('success')!!}
+                        {!! Session::get('success') !!}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>
+                    </div>
                 </div>
-                @endif
-                @if(Session::has('error'))
+            @endif
+            @if (Session::has('error'))
                 <div class="col-md-12">
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{Session::get('error')}}
+                        {{ Session::get('error') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>
+                    </div>
                 </div>
-                @endif
+            @endif
             <div class="container-contact">
                 <div class="content">
                     <div class="left-side">
@@ -54,30 +54,48 @@
                             <div class="mb-3">
                                 <input type="text" class="form-control" name="name" id=""
                                     aria-describedby="helpId" placeholder="Enter Name" />
+                                @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <input type="email" class="form-control" name="email" id=""
                                     aria-describedby="helpId" placeholder="Enter Email" />
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <input type="tel" name="phone_number" id="phone_number" class="form-control w-100" />
+                                @error('phone_number')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <input type="text" class="form-control" name="company_name" id=""
                                     aria-describedby="helpId" placeholder="Enter Company name" />
+                                @error('company_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <input type="text" class="form-control" name="country" id=""
                                     aria-describedby="helpId" placeholder="Enter Country name" />
+                                @error('country')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <div class="mb-3">
-                                    <select class="form-select" name="product" id="product">
+                                    <select class="form-select select2" name="product" id="product">
                                         <option value="" selected>Select a product</option>
                                         @foreach ($products as $item)
                                             <option value="{{ $item->id }}">{{ $item->title }}</option>
                                         @endforeach
                                     </select>
+                                    @error('product')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                             </div>
@@ -103,14 +121,12 @@
                 }
             });
             var phone_number = window.intlTelInput(
-            document.querySelector("#phone_number"),
-            {
-                separateDialCode: true,
-                preferredCountries: ["in"],
-                hiddenInput: "full",
-                utilsScript:
-                "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-            }
+                document.querySelector("#phone_number"), {
+                    separateDialCode: true,
+                    preferredCountries: ["in"],
+                    hiddenInput: "full",
+                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                }
             );
 
             $("#contactForm").validate({
@@ -132,9 +148,7 @@
                     product: {
                         required: true,
                     },
-                    note: {
-                        required: true
-                    },
+                    
                 },
                 messages: {
                     name: {
@@ -154,9 +168,7 @@
                     product: {
                         required: "Product is required",
                     },
-                    note: {
-                        required: "Note is required",
-                    },
+                    
                 },
                 errorElement: "span",
                 errorPlacement: function(error, element) {
@@ -173,35 +185,7 @@
                     $("#contactForm").submit();
                 }
             });
-            // $(document).on('click', '#contact_submit', function(e) {
-            //     e.preventDefault();
-            //     if ($("#contactForm").valid()) {
-            //         var element = $(this);
-            //         $("button[type=submit]").prop('disabled', true)
-            //         $.ajax({
-            //             url: '{{ route('contact.submit') }}',
-            //             type: 'post',
-            //             data: $("#contactForm").serialize(),
-            //             processData: false,
-            //             contentType: false,
-            //             cache: false,
-            //             dataType: 'json',
-            //             success: function(res) {
-            //                 $("button[type=submit]").prop('disabled', false)
-            //                 if (res['status'] == true) {
-            //                     toastr.success('Message sent successfully');
-            //                 } else {
-            //                     toastr.error('Something went wrong');
-            //                 }
-
-            //             },
-            //             error: function(jqXHR, err) {
-            //                 console.log('Something went wrong')
-            //             }
-            //         })
-            //     }
-
-            // })
+            
         })
     </script>
 @endsection

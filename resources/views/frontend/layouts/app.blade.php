@@ -77,13 +77,20 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('front.contact') }}">Contact Us</a>
                         </li>
-                        <li class="nav-item" id="searchLi">
+                        {{-- <li class="nav-item" id="searchLi">
                             <button class="btn btn-primary" id="searchBtn"><i class="fa fa-search"
                                     aria-hidden="true"></i></button>
-                        </li>
+                        </li> --}}
                         <li class="nav-item" id="search_bar">
-                            <form action="{{ route('search.product.home') }}" id="product_search" method="POST">
+                            {{-- <form action="{{ route('search.product.home') }}" id="product_search" method="POST">
                                 @csrf
+                            </form> --}}
+                            <form action="{{ route('search.product.home') }}" id="product_search" method="POST" class="search-bar">
+                                @csrf
+                                <input type="search" name="product_search" pattern=".*\S.*" required autocomplete="off">
+                                <button class="search-btn" type="submit">
+                                    <span>Search</span>
+                                </button>
                             </form>
                         </li>
                     </ul>
@@ -252,7 +259,7 @@
         <a href="//www.dmca.com/Protection/Status.aspx?ID=95343330-4902-4781-9e66-4ae9962d7cdc" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w150-5x1-06.png?ID=95343330-4902-4781-9e66-4ae9962d7cdc"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
     </div> -->
         </footer>
-        <a id="back-button"><img loading="lazy" src="{{ asset('image/top.webp') }}" alt="top-scroll" /></a>
+        <a id="back-button"><img loading="lazy" src="{{ asset('front-assets/chemtix_images/scroll.webp') }}" alt="top-scroll" /></a>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -274,12 +281,7 @@
 
         <script>
             $(document).ready(function() {
-                $(document).on('click', '#searchBtn', function(e) {
-                    $("#searchLi").hide();
-                    $("#product_search").append(
-                        '<input type="text" name="product_search" class="form-control" placeholder="search...">'
-                        )
-                })
+                $('.select2').select2();
             })
         </script>
         @yield('customJS')

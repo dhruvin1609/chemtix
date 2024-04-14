@@ -6,6 +6,7 @@ use App\Models\Enquiry;
 use App\Models\ProductCategory;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Validator;
 
 class FrontController extends Controller
 {
@@ -43,23 +44,36 @@ class FrontController extends Controller
 
     public function contactSubmit(Request $request){
             $product_cas_number = Products::where('id',$request->product)->first();
-
-            $contact = new Enquiry();
-            $contact->name = $request->name;
-            $contact->email = $request->email;
-            $contact->phone = $request->phone_number;
-            $contact->product_id = $request->product;
-            $contact->cas_number = $product_cas_number->cas_number;
-            $contact->country = $request->country;
-            $contact->company_name = $request->company_name;
-            $contact->note = $request->note;
-            $contact->status = 'pending';
-            $contact->save();
-            if($contact->save()){
-                return redirect()->back()->with('success','Thanks for enquiry');
+            $validator = Validator::make($request->all(),[
+                'name' => 'required',
+                'email' => 'required|email',
+                'phone_number' => 'required',
+                'company_name' => 'required',
+                'country' => 'required',
+                'product' => 'required',
+            ]);
+            if($validator->passes()){
+                $contact = new Enquiry();
+                $contact->name = $request->name;
+                $contact->email = $request->email;
+                $contact->phone = $request->phone_number;
+                $contact->product_id = $request->product;
+                $contact->cas_number = $product_cas_number->cas_number;
+                $contact->country = $request->country;
+                $contact->company_name = $request->company_name;
+                $contact->note = $request->note;
+                $contact->status = 'pending';
+                $contact->save();
+                if($contact->save()){
+                    return redirect()->back()->with('success','Thanks for enquiry');
+                }else{
+                    return redirect()->back()->with('error','Something went wrong');
+                }  
             }else{
-                return redirect()->back()->with('error','Something went wrong');
-            }  
+                return redirect()->back()->withErrors($validator)->withInput();;
+            }
+
+            
     }
 
     public function searchProduct(Request $request){

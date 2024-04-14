@@ -73,7 +73,7 @@
     </div>
 </section>
 
-<section class="import-export" style="background-image: url(/front-assets/chemtix_images/import-export.png);">
+<section class="import-export mt-5">
     <div class="container">
         <div class="sec-title text-center">
             <h2 style="color: #0f4989;">Import & Export</h2>
@@ -95,6 +95,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="ing">
+        <img src="/front-assets/chemtix_images/import-export.png" class="img-fluid ie-img" alt="">
     </div>
 </section>
 

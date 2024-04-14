@@ -103,7 +103,7 @@
                                 <textarea name="note" id="" cols="20" class="form-control" rows="5" placeholder="Description"></textarea>
                             </div>
                             <div class="button">
-                                <input type="submit" id="contact_submit" value="Send Now">
+                                <input type="submit" class="common-btn" id="contact_submit" value="Send Now">
                             </div>
                         </form>
                     </div>

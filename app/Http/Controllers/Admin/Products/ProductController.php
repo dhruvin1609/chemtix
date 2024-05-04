@@ -91,9 +91,9 @@ class ProductController extends Controller
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
                 $filename = 'product_'.time().'.'.$extension;
-                $file->move('images/product', $filename);
+                $file->move(public_path('images/product'), $filename);
                 if($product->image != '' || $product->image != null){
-                    unlink('images/product/'.$product->image);
+                    unlink(public_path('images/product'),$product->image);
                 }
                 $product->image=$filename;
             }
@@ -124,7 +124,7 @@ class ProductController extends Controller
         if($product == null){
             return response()->json(['status' => false]);
         }
-        unlink('images/product/'.$product->image);
+        unlink(public_path('images/product'),$product->image);
         $product->delete();
 
         return response()->json(['status' => true]);

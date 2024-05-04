@@ -101,8 +101,8 @@
                 @csrf
                 <div class="search_div w-100">
                     <div class="search_input">
-                        <input type="text" class="form-control" name="search" id="search_here" aria-describedby="helpId"
-                            placeholder="Search by Product Name or CAS Number" />
+                        <input type="text" class="form-control" name="search" id="search_here"
+                            aria-describedby="helpId" placeholder="Search by Product Name or CAS Number" />
                     </div>
                     <div class="btn">
                         <button type="submit" class="common-btn" id="srch_btn" style="padding: 10px">Search</button>
@@ -178,10 +178,10 @@
                         </div>
 
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border-right-footer">
-                            <h4 class="menu_title">Our Products</h4>
+                            <h4 class="menu_title">Categories</h4>
                             <ul class="footlink-inner">
-                                @foreach (getProducts() as $item)
-                                    <li><a href="{{ route('front.product') }}">{{ $item->title }}</a></li>
+                                @foreach (getCategory() as $item)
+                                    <li><a href="{{ route('front.cate-prod',$item->slug) }}">{{ $item->name }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -239,14 +239,11 @@
                                     </li>
                             </ul> --}}
                             <ul class="pagelink">
-                                <li> <a href="javascript:void(0)"><i class="fa fa-youtube" aria-hidden="true"
-                                            style="margin: 10px;font-size:20px;color:white;"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-github" aria-hidden="true"
-                                            style="margin: 10px;font-size:20px;color:white;"></i></a></li>
-                                <li> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"
-                                            style="margin: 10px;font-size:20px;color:white;"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"
-                                            style="margin: 10px;font-size:20px;color:white;"></i></a></li>
+                                <li> <a href="https://www.instagram.com/chemtix?igsh=cGVvdGlxbWE2OWMx"><i
+                                            class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li> <a href="https://www.linkedin.com/company/chemtix/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li> <a href="https://www.facebook.com/profile.php?id=100093215842792&mibextid=LQQJ4d"><i class="fa fa-facebook" aria-hidden="true"></i></i></a></li>
+                                <li><a href="https://twitter.com/chemtix?t=BmR413uCuETnh2Tc1Vpf9w&s=08&fbclid=PAZXh0bgNhZW0CMTEAAaZEkH2IJd6av0bP6G7GiNMNBXMBmjrvqK-TWCZtPD5iQQgtxLfI2HO85i8_aem_ARfcIWpYU67qm9cJjlaQ-S5Z0cvQciWH96kILW2XKklTieHTghvSxOda4r0M4eOVVjvtfIWWjgNFuvfOpyicxCKA"><i class="fa-brands fa-x-twitter"></i></a></li>
 
                             </ul>
                         </div>
@@ -282,12 +279,12 @@
                     $('.select2').select2();
                 });
                 $("#home_search").hide();
-                $(document).on('click','#search_btn_nav',function(e){
+                $(document).on('click', '#search_btn_nav', function(e) {
                     e.preventDefault();
-                    if($("#home_search").hasClass('open')){
+                    if ($("#home_search").hasClass('open')) {
                         $("#home_search").removeClass('open');
                         $("#home_search").slideUp();
-                    }else{
+                    } else {
                         $("#home_search").addClass('open');
                         $("#home_search").slideDown();
                     }

@@ -2501,6 +2501,11 @@ input.error {
 .search_input{
   width: 50% !important;
 }
+.pagelink li a i{
+  margin: 10px;
+  font-size:20px;
+  color:white;
+}
 
 
 

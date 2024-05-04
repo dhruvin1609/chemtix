@@ -30,7 +30,7 @@ class ProductController extends Controller
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
                 $filename = 'product_'.time().'.'.$extension;
-                $file->move('images/product', $filename);
+                $file->move(public_path('images/product'), $filename);
                 $product->image=$filename;
             }
             $product->description = $request->description;
@@ -92,7 +92,9 @@ class ProductController extends Controller
                 $extension = $file->getClientOriginalExtension();
                 $filename = 'product_'.time().'.'.$extension;
                 $file->move('images/product', $filename);
-                unlink('images/product/'.$product->image);
+                if($product->image != '' || $product->image != null){
+                    unlink('images/product/'.$product->image);
+                }
                 $product->image=$filename;
             }
             $product->description = $request->description;

@@ -81,8 +81,7 @@ class ProductController extends Controller
         $product = Products::find($id);
         $validator = Validator::make($request->all(),[
             'title' => 'required',
-            'description' => 'required',
-            'hsn_code' => 'required',
+            'cas_number' => 'required',
             'category_id' => 'required',
         ]);
 

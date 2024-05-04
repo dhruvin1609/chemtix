@@ -27,7 +27,6 @@ class GeneralSettingController extends Controller
             'contact_no' => 'required',
         ]);
         $data = GeneralSetting::first();
-        // dd($request->all());
         if($validator->passes()){
             if($data == null){
                 $setting = new GeneralSetting;
@@ -43,14 +42,14 @@ class GeneralSettingController extends Controller
                     $file = $request->file('primary_logo');
                     $extension = $file->getClientOriginalExtension();
                     $filename = 'setting_primary_logo_'.time().'.'.$extension;
-                    $file->move('images/setting', $filename);
+                    $file->move(public_path('images/setting'), $filename);
                     $setting->primary_logo=$filename;
                 }
                 if($request->hasFile('favicon_icon')){
                     $file = $request->file('favicon_icon');
                     $extension = $file->getClientOriginalExtension();
                     $filename = 'setting_favicon_icon_'.time().'.'.$extension;
-                    $file->move('images/setting', $filename);
+                    $file->move(public_path('images/setting'),$filename);
                     $setting->favicon_icon=$filename;
                 }
                 $setting->save();
@@ -72,16 +71,16 @@ class GeneralSettingController extends Controller
                     $file = $request->file('primary_logo');
                     $extension = $file->getClientOriginalExtension();
                     $filename = 'setting_primary_logo_'.time().'.'.$extension;
-                    $file->move('images/setting', $filename);
-                    unlink('images/setting/'.$data->primary_logo);
+                    $file->move(public_path('images/setting'), $filename);
+                    unlink(public_path('images/setting/'.$data->primary_logo));
                     $data->primary_logo=$filename;
                 }
                 if($request->hasFile('favicon_icon')){
                     $file = $request->file('favicon_icon');
                     $extension = $file->getClientOriginalExtension();
                     $filename = 'setting_favicon_icon_'.time().'.'.$extension;
-                    $file->move('images/setting', $filename);
-                    unlink('images/setting/'.$data->favicon_icon);
+                    $file->move(public_path('images/setting'), $filename);
+                    unlink(public_path('images/setting/'.$data->favicon_icon));
                     $data->favicon_icon=$filename;
                 }
                 $data->save();

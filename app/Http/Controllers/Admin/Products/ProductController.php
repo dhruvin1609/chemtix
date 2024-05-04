@@ -124,7 +124,7 @@ class ProductController extends Controller
         if($product == null){
             return response()->json(['status' => false]);
         }
-        if($product->image != '' || $product->image != null){
+        if(file_exists(public_path('images/product/'.$product->image))){
             unlink(public_path('images/product/'.$product->image));
         }
         $product->delete();

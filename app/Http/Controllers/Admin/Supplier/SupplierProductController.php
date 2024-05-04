@@ -15,7 +15,6 @@ class SupplierProductController extends Controller
 {
     public function list(){
         $supplier_product = SupplierProduct::with('getSupplierName','getproduct')->get();
-        // dd($supplier_product);
         return view('admin.supplier_product.list',compact('supplier_product'));
     }
 

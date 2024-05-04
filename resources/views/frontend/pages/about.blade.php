@@ -34,14 +34,14 @@
 <section class="our-values sec-space-both">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <div data-aos="fade-right" class="col-lg-6">
                 <img class="img-fluid" src="{{ asset('front-assets/chemtix_images/vision_img.png') }}" style="height: 30rem;width:35rem;" alt="">
             </div>
-            <div class="col-lg-6">
+            <div data-aos="fade-left" class="col-lg-6">
                 <div class="sec-title text-center">
                     <h2>Our <span style="color:#0f4989">Vision</span></h2>
                 </div>
-                <ul class="vision-text mt-5">
+                <ul  class="vision-text mt-5">
                     <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Take a place at the edge of chemical</li>
                     <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Expand the utility of chemical</li>
                     <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Upgrade the user Experience with dealing with us</li>
@@ -51,12 +51,12 @@
         </div>    
     </div>
 </section>
-<section class="our-values sec-space-both">
+<section class="our-service sec-space-both">
     <div class="container">
         <div class="row">
            
-            <div class="col-lg-6">
-                <div class="sec-title text-center">
+            <div data-aos="fade-right" class="col-lg-6">
+                <div  class="sec-title text-center">
                     <h2>Our <span style="color:#0f4989">Mission</span></h2>
                 </div>
                 <ul class="vision-text mt-5">
@@ -66,7 +66,7 @@
                     <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> We can provide integrated sourcing services for our customers</li>
                 </ul>
             </div>
-            <div class="col-lg-6">
+            <div data-aos="fade-left" class="col-lg-6">
                 <img class="img-fluid" src="{{ asset('front-assets/chemtix_images/our_mission.png') }}" style="height: 30rem;width:35rem;" alt="">
             </div>
         </div>    

@@ -61,6 +61,7 @@ class CustomerController extends Controller
             $customer->customer_pan_no = $request->customer_pan_no;
             $customer->customer_msme = $request->customer_msme;
             $customer->customer_drug_lic_no = $request->customer_drug_lic_no;
+            $customer->customer_drug_lic_no_2 = $request->customer_drug_lic_no_2;
 
             $customer->save();
 

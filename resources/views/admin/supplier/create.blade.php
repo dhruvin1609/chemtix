@@ -1,7 +1,11 @@
 @extends('admin.layouts.app')
 
 @section('content')
-
+<style>
+    .phone_code{
+        width: 100%;
+    }
+</style>
 <!-- Content Header (Page header) -->
 <section class="content-header">					
     <div class="container-fluid my-2">
@@ -110,14 +114,18 @@
                                 <input name="supplier_country" id="supplier_country" class="form-control" placeholder="Country">
                                 <p></p>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 phone_code">
                                 <label for="supplier_phone">Phone number</label>
-                                <input name="supplier_phone" id="supplier_phone" class="form-control" placeholder="Phone number">
+                                <div class="w-100">
+                                    <input name="supplier_phone" id="supplier_phone" class="form-control w-100" placeholder="Phone number">
+                                </div>
                                 <p></p>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 phone_code">
                                 <label for="supplier_phone_alter">Alternate Phone number</label>
-                                <input name="supplier_phone_alter" id="supplier_phone_alter" class="form-control" placeholder="Alternate Phone number">
+                                <div class="w-100">
+                                    <input name="supplier_phone_alter" id="supplier_phone_alter" class="form-control w-100" placeholder="Alternate Phone number">
+                                </div>
                                 <p></p>
                             </div>
                         </div>  
@@ -168,6 +176,13 @@
                             <div class="mb-3">
                                 <label for="supplier_drug_lic_no">Supplier Drug Licence Number</label>
                                 <input name="supplier_drug_lic_no" id="supplier_drug_lic_no" class="form-control" placeholder="Drug licence">
+                                <p></p>
+                            </div>
+                        </div>                 						
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="supplier_drug_lic_no_2">Supplier Drug Licence Number</label>
+                                <input name="supplier_drug_lic_no_2" id="supplier_drug_lic_no_2" class="form-control" placeholder="Drug licence">
                                 <p></p>
                             </div>
                         </div>                 						
@@ -224,6 +239,24 @@
 
 @section('customJs')
 <script>
+    $(function(){
+        var phone_number = window.intlTelInput(
+                document.querySelector("#supplier_phone_alter"), {
+                    separateDialCode: true,
+                    preferredCountries: ["in"],
+                    hiddenInput: "full",
+                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                }
+            );
+        var supplier_phone_number = window.intlTelInput(
+                document.querySelector("#supplier_phone"), {
+                    separateDialCode: true,
+                    preferredCountries: ["in"],
+                    hiddenInput: "full",
+                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                }
+            );
+    })
     $('#createSupplier').submit(function(event){
         event.preventDefault();
         var form = $(this)[0];

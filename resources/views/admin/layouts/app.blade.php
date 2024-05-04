@@ -9,6 +9,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css"
+        rel="stylesheet" />
 		<!-- Font Awesome -->
 		<link rel="stylesheet" href="{{asset('admin-assets/plugins/fontawesome-free/css/all.min.css')}}">
         <link rel="stylesheet" href="{{asset('admin-assets/plugins/dropzone/min/dropzone.min.css')}}">
@@ -105,6 +107,7 @@
 		<script src="{{asset('admin-assets/js/demo.js')}}"></script>
         <script src="{{asset('admin-assets/plugins/dropzone/min/dropzone.min.js')}}"></script>
 		{{-- <script src="{{asset('admin-assets/plugins/summernote/summernote.min.js')}}"></script> --}}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
 		<script src="{{asset('admin-assets/plugins/select2/js/select2.min.js')}}"></script>
 		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 		<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>

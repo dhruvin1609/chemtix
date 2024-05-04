@@ -43,6 +43,7 @@ Route::post('/contact/submit',[FrontController::class,'contactSubmit'])->name('c
 Route::post('/search/product/home',[FrontController::class,'searchProduct'])->name('search.product.home');
 Route::get('/login',[AuthController::class,'index'])->name('admin.login');
 Route::post('/authenticate',[AuthController::class,'authenticate'])->name('admin.authenticate');
+Route::get('/getcasnumber',[SupplierProductController::class,'getCasNumber'])->name('getCasNumber');
 
 Route::middleware('auth')->group(function(){
   Route::prefix('admin')->group(function () {
@@ -117,6 +118,7 @@ Route::middleware('auth')->group(function(){
       Route::post('/change-status/{id}',[EnquiryController::class,'change_status'])->name('enquiry.status');
       Route::post('/enquiry/remarks/{id}',[EnquiryController::class,'addRemark'])->name('enquiry.remark');
       Route::get('/enquiry/export',[EnquiryController::class,'fileExport'])->name('enquiry.export');
+      Route::get('/enquiry/view/{id}',[EnquiryController::class,'viewEnquiry'])->name('enquiry.view');
 
       // Supplier Routes
       Route::get('/supplier',[SupplierController::class,'list'])->name('supplier.list');
@@ -131,7 +133,6 @@ Route::middleware('auth')->group(function(){
       Route::get('/supplier/product',[SupplierProductController::class,'list'])->name('supplier_product.list');
       Route::get('/supplier/product/create',[SupplierProductController::class,'create'])->name('supplier_product.create');
       Route::post('/supplier/product/store',[SupplierProductController::class,'store'])->name('supplier_product.store');
-      Route::get('/getcasnumber',[SupplierProductController::class,'getCasNumber'])->name('getCasNumber');
       Route::get('/supplier/product/edit/{id}',[SupplierProductController::class,'edit'])->name('supplier_product.edit');
       Route::post('/supplier/product/update/{id}',[SupplierProductController::class,'update'])->name('supplier_product.update');
       Route::delete('/supplier/product/delete/{id}',[SupplierProductController::class,'delete'])->name('supplier_product.delete');

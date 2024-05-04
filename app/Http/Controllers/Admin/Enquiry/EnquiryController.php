@@ -6,7 +6,9 @@ use App\Exports\EnquiryExport;
 use App\Http\Controllers\Controller;
 use App\Models\Enquiry;
 use App\Models\Products;
+use Exception;
 use Maatwebsite\Excel\Facades\Excel;
+use View;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -82,6 +84,17 @@ class EnquiryController extends Controller
         $enquiry = $enquiriesQuery->paginate(10);
     
         return view('admin.enquiry.list', compact('enquiry'));
+    }
+
+    public function viewEnquiry(Request $request,$id){
+        try{
+            $enquiry = Enquiry::where('id',$id)->with('getproduct')->first();
+            $data = view('admin.enquiry.detail', compact('enquiry'))->render();
+            return response()->json(['status' => true ,'data'=>$data]);
+        }
+        catch(Exception $e){
+            dd($e);
+        }
     }
 
     public function fileExport() 

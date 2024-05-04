@@ -214,7 +214,7 @@ $("#menu_3 > a").click(function () {
     $(this).siblings("ul.sub-menu").slideToggle();
 });
 
-AOS.init({ duration: 1200 });
+AOS.init({ duration : 1200 });
 
 var input = document.querySelector("#phone_number"),
     errorMsg = document.querySelector("#error-msg"),

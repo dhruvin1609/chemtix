@@ -43,13 +43,17 @@ class FrontController extends Controller
     }
 
     public function contactSubmit(Request $request){
+        $ip = $request->ip();
+        $data = geoip( $ip );
+        $country = $data['country'];
             $product_cas_number = Products::where('id',$request->product)->first();
             $validator = Validator::make($request->all(),[
                 'name' => 'required',
                 'email' => 'required|email',
                 'phone_number' => 'required',
                 'company_name' => 'required',
-                'country' => 'required',
+                'qty_value'=>'required',
+                'qty_type'=>'required',
                 'product' => 'required',
             ]);
             if($validator->passes()){
@@ -58,9 +62,10 @@ class FrontController extends Controller
                 $contact->email = $request->email;
                 $contact->phone = $request->phone_number;
                 $contact->product_id = $request->product;
-                $contact->cas_number = $product_cas_number->cas_number;
-                $contact->country = $request->country;
+                $contact->cas_number = $request->cas_number;
+                $contact->country = $country;
                 $contact->company_name = $request->company_name;
+                $contact->qty = $request->qty_value .''.$request->qty_type;
                 $contact->note = $request->note;
                 $contact->status = 'pending';
                 $contact->save();
@@ -77,7 +82,7 @@ class FrontController extends Controller
     }
 
     public function searchProduct(Request $request){
-        $keyword = $request->product_search;
+        $keyword = $request->search;
         $data = Products::where('title','like','%'.$keyword.'%')->orWhere('cas_number','like','%'.$keyword.'%')->get();
         return view('frontend.pages.search_product_home',compact('data'));
     }

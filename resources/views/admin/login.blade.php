@@ -11,64 +11,83 @@
 		<!-- Theme style -->
 		<link rel="stylesheet" href="{{asset('admin-assets/css/adminlte.min.css')}}">
 		<link rel="stylesheet" href="{{asset('admin-assets/css/custom.css')}}">
+		<style>
+			.divider:after,
+			.divider:before {
+				content: "";
+				flex: 1;
+				height: 1px;
+				background: #eee;
+			}
+			.common-btn, a.common-btn, button.common-btn {
+				font-family: 'Nunito Sans', sans-serif;
+				font-weight: 700;
+				font-size: 17px;
+				line-height: 15px;
+				color: #ffffff;
+				background-color: #0F4989;
+				padding: 16px 30px;
+				border-radius: 5px;
+				text-transform: uppercase;
+				display: inline-block;
+				border: none;
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body class="hold-transition login-page">
-		<div class="login-box">
-			<!-- /.login-logo -->
-			<div class="card card-outline card-primary">
-			  	<div class="card-header text-center">
-					<a href="#" class="h3">Administrative Panel</a>
-			  	</div>
-			  	<div class="card-body">
-					<p class="login-box-msg">Sign in to start your session</p>
-					<form action="{{route('admin.authenticate')}}" method="post">
-                        @csrf
-				  		<div class="input-group mb-3">
-							<input type="email" value="{{old('email')}}" name="email" id="email" class="form-control @error('email') is-invalid @enderror " placeholder="Email">
-							<div class="input-group-append">
-					  			<div class="input-group-text">
-									<span class="fas fa-envelope"></span>
-					  			</div>
-							</div>
-                        @error('email')
+		<section class="vh-100">
+			<div class="container py-5 h-100">
+			  <div class="row d-flex align-items-center justify-content-center h-100">
+				<div class="col-md-8 col-lg-7 col-xl-6">
+				  <img src="{{asset('front-assets/chemtix_images/login_img_1.png')}}"
+					class="img-fluid" alt="Phone image">
+				</div>
+				
+				<div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+					<div class="d-flex justify-content-center mb-5">
+						<img class="img-fluid w-50"
+						src="@if (!empty(genrealSetting())) {{ asset('images/setting/' . genrealSetting()->primary_logo) }}" @endif alt="">	
+					</div>
+					@if ($errors->any())
+						<div class="alert alert-danger">
+							<ul>
+								@foreach ($errors->all() as $error)
+								@if($error == "Invalid Credentials")
+									<li>{{ $error }}</li>
+								@endif
+								@endforeach
+							</ul>
+						</div>
+					@endif
+				
+				  <form action="{{route('admin.authenticate')}}" method="post">
+					@csrf
+					<!-- Email input -->
+					<div data-mdb-input-init class="form-outline mb-4">
+						<label class="form-label" for="form1Example13" style="color:#0f4989">Email address</label>
+						<input type="email" value="{{old('email')}}" name="email" id="email" class="form-control @error('email') is-invalid @enderror " placeholder="Email">
+						@error('email')
                             <p class="invalid-feedback">{{ $message }}</p>
-                        @enderror
-				  		</div>
-				  		<div class="input-group mb-3">
-							<input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
-							<div class="input-group-append">
-					  			<div class="input-group-text">
-									<span class="fas fa-lock"></span>
-					  			</div>
-							</div>
-				  		</div>
-                        @error('password')
+                    	@enderror
+					</div>
+		  
+					<!-- Password input -->
+					<div data-mdb-input-init class="form-outline mb-4">
+						<label class="form-label" for="form1Example23" style="color:#0f4989">Password</label>
+						<input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
+					  @error('password')
                           <p class="invalid-feedback">{{ $message }}</p>
                       @enderror
-				  		<div class="row">
-							<!-- <div class="col-8">
-					  			<div class="icheck-primary">
-									<input type="checkbox" id="remember">
-									<label for="remember">
-						  				Remember Me
-									</label>
-					  			</div>
-							</div> -->
-							<!-- /.col -->
-							<div class="col-4">
-					  			<button type="submit" class="btn btn-primary btn-block">Login</button>
-							</div>
-							<!-- /.col -->
-				  		</div>
-					</form>
-		  			<p class="mb-1 mt-3">
-				  		<a href="forgot-password.html">I forgot my password</a>
-					</p>					
-			  	</div>
-			  	<!-- /.card-body -->
+					</div>
+		  
+					<!-- Submit button -->
+					<button type="submit" data-mdb-button-init data-mdb-ripple-init class="common-btn btn-lg btn-block">Sign in</button>
+				  </form>
+				</div>
+			  </div>
 			</div>
-			<!-- /.card -->
-		</div>
+		  </section>
 		<!-- ./wrapper -->
 		<!-- jQuery -->
 		<script src="{{asset('admin-assets/plugins/jquery/jquery.min.js')}}"></script>

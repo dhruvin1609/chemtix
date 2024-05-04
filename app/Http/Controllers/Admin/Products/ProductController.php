@@ -19,11 +19,7 @@ class ProductController extends Controller
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
             'title' => 'required',
-            'image' => 'required|mimes:jpg,jpeg,png,webp',
-            'description' => 'required',
-            'product_code' => 'required',
             'cas_number' => 'required',
-            'hsn_code' => 'required',
             'category_id' => 'required',
         ]);
 

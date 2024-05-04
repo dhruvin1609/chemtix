@@ -173,7 +173,7 @@
                 console.log('Something went wrong')
             }
         })
-      })
+      });
 
       $('#uploadCSV').submit(function(event){
         event.preventDefault();

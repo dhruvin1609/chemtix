@@ -44,7 +44,7 @@
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">
                         Upload Excel 
                     </button>
-                <a href="{{route('supplier.list')}}" class="btn btn-primary">Back</a>
+                <a href="{{route('customer.list')}}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -106,12 +106,16 @@
                             </div>
                             <div class="mb-3">
                                 <label for="customer_phone">Phone number</label>
-                                <input name="customer_phone" id="customer_phone" class="form-control" placeholder="Phone number">
+                                <div class="phone_code">
+                                    <input name="customer_phone" id="customer_phone" class="form-control" placeholder="Phone number">
+                                </div>
                                 <p></p>
                             </div>
                             <div class="mb-3">
                                 <label for="customer_phone_alter">Alternate Phone number</label>
-                                <input name="customer_phone_alter" id="customer_phone_alter" class="form-control" placeholder="Alternate Phone number">
+                                <div class="phone_code">
+                                    <input name="customer_phone_alter" id="customer_phone_alter" class="form-control" placeholder="Alternate Phone number">
+                                </div>
                                 <p></p>
                             </div>
                         </div>  
@@ -162,6 +166,12 @@
                             <div class="mb-3">
                                 <label for="customer_drug_lic_no">Supplier Drug Licence Number</label>
                                 <input name="customer_drug_lic_no" id="customer_drug_lic_no" class="form-control" placeholder="Drug licence">
+                                <p></p>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="customer_drug_lic_no_2">Supplier Drug Licence Number 2</label>
+                                <input name="customer_drug_lic_no_2" id="customer_drug_lic_no_2" class="form-control" placeholder="Drug licence">
                                 <p></p>
                             </div>
                         </div>                 						
@@ -218,6 +228,24 @@
 
 @section('customJs')
 <script>
+    $(function(){
+        var phone_number = window.intlTelInput(
+                document.querySelector("#customer_phone_alter"), {
+                    separateDialCode: true,
+                    preferredCountries: ["in"],
+                    hiddenInput: "full",
+                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                }
+            );
+        var supplier_phone_number = window.intlTelInput(
+                document.querySelector("#customer_phone"), {
+                    separateDialCode: true,
+                    preferredCountries: ["in"],
+                    hiddenInput: "full",
+                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                }
+            );
+    })
     $('#createCustomer').submit(function(event){
         event.preventDefault();
         var form = $(this)[0];

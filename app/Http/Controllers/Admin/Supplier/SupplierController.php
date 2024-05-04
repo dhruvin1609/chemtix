@@ -63,6 +63,7 @@ class SupplierController extends Controller
             $supplier->supplier_pan_no = $request->supplier_pan_no;
             $supplier->supplier_msme = $request->supplier_msme;
             $supplier->supplier_drug_lic_no = $request->supplier_drug_lic_no;
+            $supplier->supplier_drug_lic_no_2 = $request->supplier_drug_lic_no_2;
 
             $supplier->save();
 

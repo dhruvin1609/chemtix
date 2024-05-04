@@ -10,23 +10,23 @@
 
     <section class="contact-form sec-space-both">
         <div class="container d-flex justify-content-center align-items-center">
-            @if (Session::has('success'))
-                <div class="col-md-12">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {!! Session::get('success') !!}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                </div>
-            @endif
-            @if (Session::has('error'))
-                <div class="col-md-12">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ Session::get('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                </div>
-            @endif
             <div class="container-contact">
+                @if (Session::has('success'))
+                    <div class="col-md-12">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {!! Session::get('success') !!}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+                @if (Session::has('error'))
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ Session::get('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
                 <div class="content">
                     <div class="left-side">
                         <div class="address details">
@@ -79,13 +79,6 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" name="country" id=""
-                                    aria-describedby="helpId" placeholder="Enter Country name" />
-                                @error('country')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
                                 <div class="mb-3">
                                     <select class="form-select select2" name="product" id="product">
                                         <option value="" selected>Select a product</option>
@@ -99,8 +92,34 @@
                                 </div>
 
                             </div>
+                            <div class="mb-3" id="cas_div" style="display: none;">
+                                <input type="text" class="form-control" name="cas_number" id="cas_number_form"
+                                    aria-describedby="helpId" placeholder="Enter CAS Number" />
+                            </div>
                             <div class="mb-3">
-                                <textarea name="note" id="" cols="20" class="form-control" rows="5" placeholder="Description"></textarea>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="" class="form-label">Qty</label>
+                                        <input type="number" class="form-control" name="qty_value" placeholder="Enter Qty">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Qty Weight</label>
+                                            <select class="form-select" name="qty_type" id="qty_type">
+                                                <option selected value="">Select Weight</option>
+                                                <option value="mg">Mg</option>
+                                                <option value="gms">Gram</option>
+                                                <option value="kgs">Kg</option>
+                                                <option value="mt">Metric Ton</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <textarea name="note" id="" cols="20" class="form-control" rows="5"
+                                    placeholder="Description"></textarea>
                             </div>
                             <div class="button">
                                 <input type="submit" class="common-btn" id="contact_submit" value="Send Now">
@@ -119,6 +138,24 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
+            });
+            $("#product").change(function() {
+                var product_id = $(this).val();
+                $.ajax({
+                    url: '{{ route('getCasNumber') }}',
+                    type: 'get',
+                    data: {
+                        product_id: product_id
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        $('#cas_number_form').val(res.casNumber);
+                        $("#cas_div").show();
+                    },
+                    error: function(jqXHR, err) {
+                        console.log('Something went wrong')
+                    }
+                })
             });
             var phone_number = window.intlTelInput(
                 document.querySelector("#phone_number"), {
@@ -148,7 +185,16 @@
                     product: {
                         required: true,
                     },
-                    
+                    cas_number: {
+                        required: true,
+                    },
+                    qty_type:{
+                        required:true,
+                    },
+                    qty_value:{
+                        required:true,
+                    }
+
                 },
                 messages: {
                     name: {
@@ -168,7 +214,16 @@
                     product: {
                         required: "Product is required",
                     },
-                    
+                    cas_number: {
+                        required: "Enter CAS number",
+                    },
+                    qty_type:{
+                        required:"Please enter Quantity",
+                    },
+                    qty_value:{
+                        required:"Please enter weight",
+                    }
+
                 },
                 errorElement: "span",
                 errorPlacement: function(error, element) {
@@ -181,11 +236,11 @@
                 unhighlight: function(element, errorClass, validClass) {
                     $(element).removeClass("is-invalid");
                 },
-                submitHandler:function(){
+                submitHandler: function() {
                     $("#contactForm").submit();
                 }
             });
-            
+
         })
     </script>
 @endsection

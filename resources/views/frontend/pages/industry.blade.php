@@ -51,7 +51,7 @@
                 <p class="font-weight-bold">Below is a A-Z list of various industries we supply our wide range of chemicals
                     as per their requirements:</p>
             </div>
-            <div class="row mt-5">
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" data-aos-offset="200" class="row mt-5">
                 <div class="col-6 col-md-2">
                     <div class="inner-content">
                         <img src="{{asset('front-assets/chemtix_images/pharmaceutical.png')}}" alt="">

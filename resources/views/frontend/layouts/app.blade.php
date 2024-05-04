@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" data-async />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('front-assets/css/style.css') }}" data-async />
     <link rel="stylesheet" href="{{ asset('front-assets/css/responsive.css') }}" data-async />
@@ -77,14 +78,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('front.contact') }}">Contact Us</a>
                         </li>
-                        {{-- <li class="nav-item" id="searchLi">
-                            <button class="btn btn-primary" id="searchBtn"><i class="fa fa-search"
-                                    aria-hidden="true"></i></button>
-                        </li> --}}
-                        <li class="nav-item" id="search_bar">
-                            {{-- <form action="{{ route('search.product.home') }}" id="product_search" method="POST">
-                                @csrf
-                            </form> --}}
+                        <li class="nav-item">
+                            <a href="javascript:void(0)" id="search_btn_nav" class="common-btn"
+                                style="padding: 10px !important;"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        </li>
+                        {{-- <li class="nav-item" id="search_bar">
                             <form action="{{ route('search.product.home') }}" id="product_search" method="POST" class="search-bar">
                                 @csrf
                                 <input type="search" name="product_search" pattern=".*\S.*" required autocomplete="off">
@@ -92,12 +90,26 @@
                                     <span>Search</span>
                                 </button>
                             </form>
-                        </li>
+                        </li> --}}
                     </ul>
 
                 </div>
             </div>
         </nav>
+        <div id="home_search">
+            <form action="{{ route('search.product.home') }}" method="POST">
+                @csrf
+                <div class="search_div w-100">
+                    <div class="search_input">
+                        <input type="text" class="form-control" name="search" id="search_here" aria-describedby="helpId"
+                            placeholder="Search by Product Name or CAS Number" />
+                    </div>
+                    <div class="btn">
+                        <button type="submit" class="common-btn" id="srch_btn" style="padding: 10px">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </header>
     <div id="content">
         <div id='whatsapp-chat' class='hide'>
@@ -121,10 +133,10 @@
                     <div class='info-chat'>
                         <span class='chat-label'>Support</span>
                         <span class='chat-nama'>Customer Service 1</span>
-                    </div><span class='my-number'>9723402903</span>
+                    </div><span class='my-number'>8866131877</span>
                 </a>
                 <!-- Info Contact End -->
-                <div class='blanter-msg'>Call us to <b>+919723402903</b> from <i>0:00hs a 24:00hs</i></div>
+                <div class='blanter-msg'>Call us to <b>+918866131877</b> from <i>0:00hs a 24:00hs</i></div>
             </div>
             <div class='start-chat hide'>
                 <div class='first-msg'><span>Hello! What can I do for you?</span></div>
@@ -137,35 +149,17 @@
         </div>
         <a class='blantershow-chat' href='javascript:void' title='Show Chat'><i class='fab fa-whatsapp'></i></a>
         @yield('content')
-        {{-- <div class="footer-career sec-space-both">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12 mt-4">
-                        <div class="career-lt">
-                            <div class="sec-title text-left">
-                                <h2>Looking for <span>Chemicals? </span></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-5 col-sm-12 col-xs-12">
-                        <div class="career-rt text-right">
-                            <a href="{{ route('front.contact') }}" class="common-btn">Contact us now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <footer>
             <div class="foot-link p-60">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border-right-footer">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5845.984503451503!2d72.54224691847274!3d23.095147047394853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83fedef840d9%3A0x2291a16bd1dd7896!2sChemtix!5e0!3m2!1sen!2sin!4v1711895093222!5m2!1sen!2sin"
                                 width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border-right-footer">
                             <h4 class="menu_title">Company Details</h4>
                             <ul class="footlink-inner">
                                 <li>
@@ -183,7 +177,7 @@
                             </ul>
                         </div>
 
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border-right-footer">
                             <h4 class="menu_title">Our Products</h4>
                             <ul class="footlink-inner">
                                 @foreach (getProducts() as $item)
@@ -191,24 +185,24 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 p-45">
                             <div class="let_talk mh-5">
-                                    <span>
-                                        <i class="fa-solid fa-square-phone-flip"></i>
-                                    </span>
-                                    <p>Lets Talk</p>
+                                <span>
+                                    <i class="fa-solid fa-square-phone-flip"></i>
+                                </span>
+                                <p>Lets Talk</p>
                             </div>
                             <div class="let_talk mh-5">
-                                    <span>
-                                        <i class="fa-solid fa-envelope-open-text"></i>
-                                    </span>
-                                    <p>Business Inquiry <br> <span class="mail-text">info@chemtix.in</span></p>
+                                <span>
+                                    <i class="fa-solid fa-envelope-open-text"></i>
+                                </span>
+                                <p>Business Inquiry <br> <span class="mail-text">info@chemtix.in</span></p>
                             </div>
                             <div class="let_talk mh-5">
-                                    <span>
-                                        <i class="fa-brands fa-telegram"></i>
-                                    </span>
-                                    <p>PR or Media</p>
+                                <span>
+                                    <i class="fa-brands fa-telegram"></i>
+                                </span>
+                                <p>PR or Media</p>
                             </div>
                         </div>
 
@@ -245,11 +239,15 @@
                                     </li>
                             </ul> --}}
                             <ul class="pagelink">
-                                <li> <a href="javascript:void(0)"><i class="fa fa-youtube" aria-hidden="true" style="margin: 10px;font-size:20px;color:white;"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-github" aria-hidden="true" style="margin: 10px;font-size:20px;color:white;"></i></a></li>
-                                <li> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true" style="margin: 10px;font-size:20px;color:white;"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true" style="margin: 10px;font-size:20px;color:white;"></i></a></li>
-                                
+                                <li> <a href="javascript:void(0)"><i class="fa fa-youtube" aria-hidden="true"
+                                            style="margin: 10px;font-size:20px;color:white;"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-github" aria-hidden="true"
+                                            style="margin: 10px;font-size:20px;color:white;"></i></a></li>
+                                <li> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"
+                                            style="margin: 10px;font-size:20px;color:white;"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"
+                                            style="margin: 10px;font-size:20px;color:white;"></i></a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -259,12 +257,14 @@
         <a href="//www.dmca.com/Protection/Status.aspx?ID=95343330-4902-4781-9e66-4ae9962d7cdc" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w150-5x1-06.png?ID=95343330-4902-4781-9e66-4ae9962d7cdc"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
     </div> -->
         </footer>
-        <a id="back-button"><img loading="lazy" src="{{ asset('front-assets/chemtix_images/scroll.webp') }}" alt="top-scroll" /></a>
+        <a id="back-button"><img loading="lazy" src="{{ asset('front-assets/chemtix_images/scroll_btn.png') }}"
+                alt="top-scroll" /></a>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
         </script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
         <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.js">
         </script>
@@ -272,17 +272,27 @@
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
             integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-            integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
         <script defer src="{{ asset('front-assets/js/main.js') }}"></script>
 
         <script>
-            $(document).ready(function() {
-                $('.select2').select2();
-            })
+            $(function() {
+                $(document).ready(function() {
+                    $('.select2').select2();
+                });
+                $("#home_search").hide();
+                $(document).on('click','#search_btn_nav',function(e){
+                    e.preventDefault();
+                    if($("#home_search").hasClass('open')){
+                        $("#home_search").removeClass('open');
+                        $("#home_search").slideUp();
+                    }else{
+                        $("#home_search").addClass('open');
+                        $("#home_search").slideDown();
+                    }
+                })
+            });
         </script>
         @yield('customJS')
     </div>

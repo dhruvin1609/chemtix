@@ -84,7 +84,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div class="about-content">
+          <div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" class="about-content">
             <div class="sec-title text-left">
               <h2>Welcome to <br /><span>Chemtix</span></h2>
             </div>
@@ -101,7 +101,7 @@
           </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 abpic">
-          <div class="about-image">
+          <div  class="about-image">
             <img loading="lazy" src="{{asset('front-assets/chemtix_images/About us page-amico.png')}}" alt="about" />
           </div>
         </div>
@@ -120,7 +120,7 @@
         {{-- <div class="d-flex justify-content-center align-items-center">
           <img src="{{ asset('front-assets/chemtix_images/our_services.png') }}" class="img-fluid service_img" alt="">
         </div> --}}
-        <div class="row">
+        <div data-aos="fade-in" class="row">
           <div class="col-lg-4 mt-5 service-parent">
             <div class="service">
               <div class="Solutions_title_container d-flex flex-row align-items-center justify-content-center">
@@ -255,44 +255,44 @@
       <div class="sec-title text-center">
         <h2>Exclusive Marketing Of Several Category</h2>
       </div>
-      <div class="row mt-5 d-flex justify-content-center align-items-center">
+      <div data-aos="fade-right" class="row mt-5 d-flex justify-content-center align-items-center">
         {{-- @foreach ($products as $item) --}}
-        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+        <div  class="col-md-4 col-lg-2 d-flex justify-content-center align-items-center mb-5 text-center" >
           <div class="icon-box">
             <img src="{{asset('front-assets/chemtix_images/chemicals_cat.png')}}" class="card-img-top product-image" alt="...">
             <hr>
             <a href="{{ route('front.cate-prod','chemical') }}"><h5 class="card-title">Chemicals</h5></a>
           </div>
         </div>
-        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+        <div class="col-md-4 col-lg-2 d-flex justify-content-center align-items-center mb-5 text-center">
           <div class="icon-box">
             <img src="{{asset('front-assets/chemtix_images/intermediate_cat.png')}}" class="card-img-top product-image" alt="...">
             <hr>
             <a href="{{ route('front.cate-prod','intermediates') }}"><h5 class="card-title">Intermediate</h5></a>
           </div>
         </div>
-        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+        <div class="col-md-4 col-lg-2 d-flex justify-content-center align-items-center mb-5 text-center">
           <div class="icon-box">
             <img src="{{asset('front-assets/chemtix_images/solvent_cat.png')}}" class="card-img-top product-image" alt="...">
             <hr>
             <a href="{{ route('front.cate-prod','solvent') }}"><h5 class="card-title">Solvent</h5></a>
           </div>
         </div>
-        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+        <div class="col-md-4 col-lg-2 d-flex justify-content-center align-items-center mb-5 text-center">
           <div class="icon-box">
             <img src="{{asset('front-assets/chemtix_images/api_cat.png')}}" class="card-img-top product-image" alt="...">
             <hr>
             <a href="{{ route('front.cate-prod','api') }}"><h5 class="card-title">API</h5></a>
           </div>
         </div>
-        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+        <div class="col-md-4 col-lg-2 d-flex justify-content-center align-items-center mb-5 text-center">
           <div class="icon-box">
             <img src="{{asset('front-assets/chemtix_images/rice field-rafiki.png')}}" class="card-img-top product-image" alt="...">
             <hr>
             <a href="{{ route('front.cate-prod','agro-industries') }}"><h5 class="card-title">Agro Industries</h5></a>
           </div>
         </div>
-        <div class="col-md-4 col-lg-4 d-flex justify-content-center align-items-center mb-5 text-center">
+        <div class="col-md-4 col-lg-2 d-flex justify-content-center align-items-center mb-5 text-center">
           <div class="icon-box">
             <img src="{{asset('front-assets/chemtix_images/beaker chemistry-rafiki.png')}}" class="card-img-top product-image" alt="...">
             <hr>
@@ -304,7 +304,7 @@
       </div>
      
       
-      <div class="all-btn text-center">
+      <div class="text-center">
         <a href="{{ route('front.product') }}" class="common-btn">All Products</a>
       </div>
     </div>

@@ -78,12 +78,16 @@
                             </div>
                             <div class="mb-3">
                                 <label for="supplier_phone">Phone number</label>
-                                <input name="supplier_phone" id="supplier_phone" value="{{$supplier->supplier_phone}}" class="form-control" placeholder="Phone number">
+                                <div class="phone_code">
+                                    <input name="supplier_phone" id="supplier_phone" value="{{$supplier->supplier_phone}}" class="form-control" placeholder="Phone number">
+                                </div>
                                 <p></p>
                             </div>
                             <div class="mb-3">
                                 <label for="supplier_phone_alter">Alternate Phone number</label>
-                                <input name="supplier_phone_alter" id="supplier_phone_alter" value="{{$supplier->supplier_phone_alter}}" class="form-control" placeholder="Alternate Phone number">
+                                <div class="phone_code">
+                                    <input name="supplier_phone_alter" id="supplier_phone_alter" value="{{$supplier->supplier_phone_alter}}" class="form-control" placeholder="Alternate Phone number">
+                                </div>
                                 <p></p>
                             </div>
                         </div>  
@@ -190,6 +194,26 @@
 
 @section('customJs')
 <script>
+    $(function(){
+        var phone_number = window.intlTelInput(
+                document.querySelector("#supplier_phone_alter"), {
+                    separateDialCode: true,
+                    preferredCountries: ["in"],
+                    hiddenInput: "full",
+                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                }
+            );
+        var supplier_phone_number = window.intlTelInput(
+                document.querySelector("#supplier_phone"), {
+                    separateDialCode: true,
+                    preferredCountries: ["in"],
+                    hiddenInput: "full",
+                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                }
+            );
+            
+    });
+    
     $('#updateSupplier').submit(function(event){
         event.preventDefault();
         var form = $(this)[0];

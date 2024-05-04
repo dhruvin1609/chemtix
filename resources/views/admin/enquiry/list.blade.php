@@ -38,9 +38,9 @@
                                 <th>CAS Number</th>
                                 <th>Country</th>
                                 <th>Company Name</th>
-                                <th>status</th>
-                                <th>Action</th>
+                                <th>Status</th>
                                 <th>Remarks</th>
+                                <th>view enquiry</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,14 +48,12 @@
                                 @foreach ($enquiry as $item)
                                 <tr data-enquiry-id="{{ $item->id }}">
                                     <td>{{$item->name}}</td>
-                                    <td>{{$item->phone}}</td>
-                                    <td>{{$item->email}}</td>
+                                    <td>{{Str::limit($item->phone,5,'...')}}</td>
+                                    <td>{{Str::limit($item->email, 10, '...')}}</td>
                                     <td>{!! ($item->getproduct ? $item->getproduct->title : '<p class="text-danger">Product is deleted</p>') !!}</td>
                                     <td>{{$item->cas_number}}</td>
                                     <td>{{$item->country}}</td>
-                                    <td>{{$item->company_name}}</td>
-                                    <td>{{$item->status}}</td>
-                                      
+                                    <td>{{$item->company_name}}</td>                                      
                                     <td>
                                         
                                         <select name="change_status" class="change_status">
@@ -100,6 +98,7 @@
                                             
                                         </form>
                                     </td>
+                                    <td><a href="javascript:void(0)" class="view_inquiry" data-id="{{ $item->id }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                 </tr>
                                 @endforeach
                             @else
@@ -122,6 +121,23 @@
                 </div>
             </div>
         </div>
+          
+        <div class="modal fade" id="viewEnquiry" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="viewEnquiryLabel">Enquiry Details</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="viewEnquiryBody">
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
         <!-- /.card -->
     </section>
     <!-- /.content -->
@@ -129,34 +145,36 @@
 @endsection
 
 @section('customJs')
+<script>
+    var viewUrl = "{{ route('enquiry.view',':id') }}"
+</script>
 
 <script>
-   function deleteProduct(id){
-        var url = `{{ route("products.delete","ID") }}`
-        var newUrl = url.replace("ID",id);
-
-        if(confirm("Are you Sure You want to delete ?")){
+    $(function(){
+        
+        $(document).on('click',".view_inquiry",function(e){
+            e.preventDefault();
+            // debugger
+            let id = $(this).data('id');
             $.ajax({
-            url:newUrl,
-            type:'delete',
-            data:{},
+            url:viewUrl.replace(':id',id),
+            type:'GET',
             dataType:'json',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success : function (res){
+            success: function(res){
                 if(res.status){
-                    window.location.href = "{{ route('products.list') }}"
-                    toastr.success('Product Deleted successfully');
+                    console.log('res',res.data);
+                    $("#viewEnquiryBody").html(res.data);
+                    $("#viewEnquiry").modal('show');
                 }
+                
+            },
+            error:function(jqXHR,err){
+                console.log('Something went wrong')
             }
+        })
+        })
 
-            })
-        }
-       
-       
-    }
-
+    })
     $(".change_status").change(function(){
         var status = $(this).val();
         var enquiryId = $(this).closest('tr').data('enquiry-id');

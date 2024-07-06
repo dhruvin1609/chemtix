@@ -18,16 +18,25 @@
                 <input type="text" value="{{ $enquiry->email }}" class="form-control" disabled aria-describedby="helpId" placeholder="" />
             </div>
         </div>
+        @if($enquiry->product_id)
         <div class="col-lg-6">
             <div class="mb-3">
                 <label for="" class="form-label">Product</label>
-                <input type="text" value="{{ $enquiry->getproduct->title }}" class="form-control" disabled aria-describedby="helpId" placeholder="" />
+                <input type="text" value="{{ $enquiry?->getproduct?->title }}" class="form-control" disabled aria-describedby="helpId" placeholder="" />
             </div>
         </div>
+        @else
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label for="" class="form-label">Other Product</label>
+                <input type="text" value="{{ $enquiry->other_product??"" }}" class="form-control" disabled aria-describedby="helpId" placeholder="" />
+            </div>
+        </div>
+        @endif
         <div class="col-lg-6">
             <div class="mb-3">
                 <label for="" class="form-label">CAS Number</label>
-                <input type="text" value="{{ $enquiry->cas_number }}" class="form-control" disabled aria-describedby="helpId" placeholder="" />
+                <input type="text" value="{{ $enquiry->cas_number??"" }}" class="form-control" disabled aria-describedby="helpId" placeholder="" />
             </div>
         </div>
         <div class="col-lg-6">

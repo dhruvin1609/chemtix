@@ -93,7 +93,8 @@ class EnquiryController extends Controller
             return response()->json(['status' => true ,'data'=>$data]);
         }
         catch(Exception $e){
-            return response()->json(['status' => false]);
+            dd($e);
+            return response()->json(['status' => false,'message' => 'Either Product Or Category is deleted']);
         }
     }
 

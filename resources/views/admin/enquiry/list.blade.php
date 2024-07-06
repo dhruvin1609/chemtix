@@ -51,7 +51,8 @@
                                     <td>{{$item->name}}</td>
                                     <td>{{Str::limit($item->phone,5,'...')}}</td>
                                     <td>{{Str::limit($item->email, 10, '...')}}</td>
-                                    <td>{!! ($item->getproduct ? $item->getproduct->title : '<p class="text-danger">Product is deleted</p>') !!}</td>
+                                    <td>{{ ($item->product_id == null) ? $item->other_product??"<p class='text-danger'>Product is deleted</p>" : $item->getproduct->title??"<p class='text-danger'>Product is deleted</p>" }}</td>
+                                    {{-- <td>{!! ($item->getproduct ? $item->getproduct->title : '<p class="text-danger">Product is deleted</p>') !!}</td> --}}
                                     <td>{{$item->cas_number}}</td>
                                     <td>{{$item->country}}</td>
                                     <td>
@@ -165,6 +166,8 @@
                     console.log('res',res.data);
                     $("#viewEnquiryBody").html(res.data);
                     $("#viewEnquiry").modal('show');
+                }else{
+                    toastr.error(res.message);
                 }
                 
             },

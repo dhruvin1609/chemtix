@@ -88,6 +88,8 @@ Route::middleware('auth')->group(function(){
       Route::get('/products/edit/{id}',[ProductController::class,'edit'])->name('products.edit');
       Route::post('/products/update/{id}',[ProductController::class,'update'])->name('products.update');
       Route::delete('/products/delete/{id}',[ProductController::class,'destroy'])->name('products.delete');
+      Route::post('/product/csv/import',[ProductController::class,'product_csv_import'])->name('products.import');
+      Route::get('/product/csv/download/template',[ProductController::class,'downloadTemplate'])->name('products.downloadTemplate');
 
       // Industry Routes
       Route::get('/industry',[IndustryController::class,'create'])->name('industry.create');
@@ -128,6 +130,7 @@ Route::middleware('auth')->group(function(){
       Route::post('/supplier/update/{id}',[SupplierController::class,'update'])->name('supplier.update');
       Route::delete('/supplier/delete/{id}',[SupplierController::class,'delete'])->name('supplier.delete');
       Route::post('supplier/csv/import/',[SupplierController::class,'csv_import'])->name('supplier.import');
+      Route::get('supplier/csv/template/',[SupplierController::class,'downloadTemplate'])->name('supplier.downloadTemplate');
 
       // Supplier Product Routes
       Route::get('/supplier/product',[SupplierProductController::class,'list'])->name('supplier_product.list');
@@ -139,7 +142,7 @@ Route::middleware('auth')->group(function(){
       Route::post('supplier/product/import/',[SupplierProductController::class,'csv_import'])->name('supplier_product.import');
 
       Route::get('/search/suppliers',[SupplierProductController::class,'search_supplier'])->name('supplier.search');
-      Route::post('/get/product/data',[SupplierProductController::class,'getProductData'])->name('supplier.get');
+      Route::post('/get/product/data/{id}',[SupplierProductController::class,'getProductData'])->name('supplier.get');
 
       // Customer Routes
       Route::get('/customer',[CustomerController::class,'list'])->name('customer.list');
@@ -149,6 +152,7 @@ Route::middleware('auth')->group(function(){
       Route::post('/customer/update/{id}',[CustomerController::class,'update'])->name('customer.update');
       Route::delete('/customer/delete/{id}',[CustomerController::class,'delete'])->name('customer.delete');
       Route::post('customer/csv/import/',[CustomerController::class,'customer_import'])->name('customer.import');
+      Route::get('customer/csv/download/template/',[CustomerController::class,'downloadTemplate'])->name('customer.downloadTemplate');
 
       // Customer Product Routes
       Route::get('/customer/product',[CustomerProductController::class,'list'])->name('customer_product.list');
@@ -158,9 +162,10 @@ Route::middleware('auth')->group(function(){
       Route::post('/customer/product/update/{id}',[CustomerProductController::class,'update'])->name('customer_product.update');
       Route::delete('/customer/product/delete/{id}',[CustomerProductController::class,'delete'])->name('customer_product.delete');
       Route::post('/customer/product/import/',[CustomerProductController::class,'customer_product_import'])->name('customer_product.import');
+      Route::get('/customer/product/csv/template/',[CustomerProductController::class,'downloadTemplate'])->name('customer_product.downloadTemplate');
 
       Route::get('/search/customers',[CustomerProductController::class,'search_customer'])->name('customer.search');
-      Route::post('/search/data',[CustomerProductController::class,'getData'])->name('customer.get');
+      Route::post('/search/data/{id}',[CustomerProductController::class,'getData'])->name('customer.get');
 
       Route::get('/po',[PurchaseOrderController::class,'index'])->name('po.index');
 

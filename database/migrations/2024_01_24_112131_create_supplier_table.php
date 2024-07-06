@@ -25,10 +25,6 @@ return new class extends Migration
             $table->string('supplier_fax')->nullable();
             $table->string('supplier_email');
             $table->string('supplier_website');
-            $table->string('contact_name');
-            $table->string('contact_phone');
-            $table->string('contact_designation');
-            $table->string('contact_email');
             $table->timestamps();
         });
     }

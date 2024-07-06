@@ -36,9 +36,6 @@
                                 <th>Customer State</th>
                                 <th>Customer Phone</th>
                                 <th>Customer Email</th>
-                                <th>Customer GST</th>
-                                <th>Customer MSME</th>
-                                <th>Customer Drug Licence Number</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -50,12 +47,10 @@
                                     <td>{{$item->customer_state}}</td>
                                     <td>{{$item->customer_phone}}</td>
                                     <td>{{$item->customer_email}}</td>
-                                    <td>{{$item->customer_gst_no}}</td>
-                                    <td>{{$item->customer_msme}}</td>
-                                    <td>{{$item->customer_drug_lic_no}}</td>
                                     <td>
                                         <a href="{{route('customer.edit',$item->id)}}"><button class="btn btn-primary">Edit</button></a>
                                         <button onclick="deleteCustomer({{$item->id}})" class="btn btn-danger">Delete</button>
+                                        <button class="btn btn-success customer-product" data-id="{{ $item->id }}">View Products</button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -75,12 +70,31 @@
         <!-- /.card -->
     </section>
     <!-- /.content -->
+
+    <div class="modal fade" id="viewProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="viewProductLabel">Customer Products</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="viewProductBody">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
   
 @endsection
 
 @section('customJs')
 
 <script>
+    var customerUrl = "{{ route('customer.get',':id') }}";
    function deleteCustomer(id){
         var url = `{{ route("customer.delete","ID") }}`
         var newUrl = url.replace("ID",id);
@@ -106,7 +120,30 @@
        
        
     }
-
+    $(function(){
+        $(document).on('click','.customer-product',function(e){
+            e.preventDefault();
+            var url = customerUrl.replace(":id", $(this).data('id'));
+            console.log(url);
+                $.ajax({
+                    url: url,
+                    data: $(this).serializeArray(),
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(res) {
+                        if (res.status == true) {
+                            $("#viewProductBody").html(res.data);
+                            $("#viewProduct").modal('show');
+                        } else {
+                            toastr.error('Something Went Wrong');
+                        }
+                    },
+                    error: function(jqXHR, err) {
+                        console.log('Something went wrong')
+                    }
+                })
+        })
+    })
     $(".change_status").change(function(){
         var status = $(this).val();
         var enquiryId = $(this).closest('tr').data('enquiry-id');

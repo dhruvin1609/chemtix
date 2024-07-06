@@ -40,7 +40,7 @@
                     </div>
                     
                 </form>
-                <a href="{{ asset('csv/customer_csv.csv') }}" class="btn btn-info">Download template</a>
+                <a href="{{ route('customer.downloadTemplate') }}" class="btn btn-info">Download template</a>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">
                         Upload Excel 
                     </button>
@@ -54,7 +54,7 @@
 <section class="content">
     <!-- Default box -->
     <div class="container-fluid">
-        <form action="" name="createCustomer" id="createCustomer" method="POST">
+        <form action="" class="repeater" name="createCustomer" id="createCustomer" method="POST">
             <div class="card">
                 <div class="card-body">								
                     <div class="row">
@@ -182,36 +182,45 @@
                 <div class="card-header">
                     <h5>Contact Person Detail</h5>
                 </div>
-                <div class="card-body">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="supplier_name">Name</label>
-                            <input type="text" name="contact_name" id="contact_name" class="form-control" placeholder="Name">	
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="supplier_name">Phone Number</label>
-                            <input type="text" name="contact_phone" id="contact_phone" class="form-control" placeholder="Phone Number">	
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="supplier_name">Designation</label>
-                            <input type="text" name="contact_designation" id="contact_designation" class="form-control" placeholder="Designation">	
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="supplier_name">Email</label>
-                            <input type="text" name="contact_email" id="contact_email" class="form-control" placeholder="Email">	
-                            <p></p>
-                        </div>
-                    </div>
+                <div data-repeater-list="contact_details">
+                    <div data-repeater-item>
+                        <div class="card-body">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="supplier_name">Name</label>
+                                    <input type="text" name="contact_name" id="contact_name" class="form-control" placeholder="Name">	
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="supplier_name">Phone Number</label>
+                                    <input type="text" name="contact_phone" id="contact_phone" class="form-control" placeholder="Phone Number">	
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="supplier_name">Designation</label>
+                                    <input type="text" name="contact_designation" id="contact_designation" class="form-control" placeholder="Designation">	
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="supplier_name">Email</label>
+                                    <input type="text" name="contact_email" id="contact_email" class="form-control" placeholder="Email">	
+                                    <p></p>
+                                </div>
+                            </div>
+                            <button type="button" data-repeater-delete class="btn btn-danger">Delete</button>
+                            
+                            </div>
+                            </div>
+                        <button type="button" data-repeater-create class="btn btn-success">Add</button>
+
                 </div>
+                
             </div>
             <div class="pb-5 pt-3">
                 <button type="submit" class="btn btn-primary">Create</button>
@@ -227,6 +236,7 @@
 @endsection
 
 @section('customJs')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js" integrity="sha512-foIijUdV0fR0Zew7vmw98E6mOWd9gkGWQBWaoA1EOFAx+pY+N8FmmtIYAVj64R98KeD2wzZh1aHK0JSpKmRH8w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $(function(){
         var phone_number = window.intlTelInput(
@@ -245,7 +255,12 @@
                     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
                 }
             );
-    })
+
+        $('.repeater').repeater({
+            isFirstItemUndeletable: false,
+            initEmpty:true,
+        });
+    });
     $('#createCustomer').submit(function(event){
         event.preventDefault();
         var form = $(this)[0];

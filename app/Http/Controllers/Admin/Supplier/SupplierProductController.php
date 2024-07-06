@@ -7,6 +7,7 @@ use App\Imports\SupplierProductImport;
 use App\Models\Products;
 use App\Models\Supplier;
 use App\Models\SupplierProduct;
+use Exception;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Validator;
@@ -117,18 +118,20 @@ class SupplierProductController extends Controller
 
     public function search_supplier(Request $request){
         $data = Supplier::all();
-        // dd($data);
        return view('admin.search_supplier.index',compact('data'));
     }
 
-    public function getProductData(Request $request){
-        $new_data=[];
-        $supplier_id = $request->customer_name;
-        $data = SupplierProduct::where('supplier_id',$supplier_id)->get();
-        foreach ($data as $item) {
-            $new_data[]=$item->product_id;
+    public function getProductData(Request $request,$id){
+        
+        try{
+            $data = SupplierProduct::where('supplier_id',$id)->pluck('product_id')->toArray();
+            $product = Products::whereIn('id',$data)->with('getCategory')->get();
+            $data = view('admin.search_supplier.index',compact('product'))->render();
+            return response()->json(['status' => true ,'data'=>$data]);
+
         }
-        $product = Products::whereIn('id',$new_data)->with('getCategory')->get();
-        return view('admin.search_supplier.index',compact('product'));
+        catch(Exception $e){
+            return response()->json(['status' => false]);
+        }
     }
 }

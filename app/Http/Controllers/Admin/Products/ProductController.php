@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin\Products;
 
 use App\Http\Controllers\Controller;
+use App\Imports\ProductImport;
 use App\Models\ProductCategory;
 use App\Models\Products;
+use App\Rules\UniqueProduct;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Validator;
 
 class ProductController extends Controller
@@ -18,7 +22,10 @@ class ProductController extends Controller
 
     public function store(Request $request){
         $validator = Validator::make($request->all(),[
-            'title' => 'required',
+            'title' => [
+                'required',
+                new UniqueProduct($request->title, $request->category_id, $request->cas_number),
+            ],
             'cas_number' => 'required',
             'category_id' => 'required',
         ]);
@@ -56,7 +63,7 @@ class ProductController extends Controller
     }
 
     public function list(Request $request){
-        $productQuery = Products::with('getCategory');
+        $productQuery = Products::with('getCategory')->orderBy('id','DESC');
     
         if($request->has('keyword')) {
             $keyword = $request->input('keyword');
@@ -80,7 +87,10 @@ class ProductController extends Controller
     public function update(Request $request,$id){
         $product = Products::find($id);
         $validator = Validator::make($request->all(),[
-            'title' => 'required',
+            'title' => [
+                'required',
+                new UniqueProduct($request->title, $request->category_id, $request->cas_number,$id),
+            ],
             'cas_number' => 'required',
             'category_id' => 'required',
         ]);
@@ -130,5 +140,33 @@ class ProductController extends Controller
         $product->delete();
 
         return response()->json(['status' => true]);
+    }
+
+    public function product_csv_import(Request $request){
+        $validator = Validator::make($request->all(),[
+            'file' => 'required',
+        ]);
+        $file = $request->file('file');
+        if($validator->passes()){
+            // Excel::import(new SupplierImport, $request->file('file')->store('temp'));
+            Excel::import(new ProductImport, $file, null, \Maatwebsite\Excel\Excel::CSV);
+
+            return response()->json(['status' => true]);
+        }else{
+            return response()->json(['status' => false , 'errors' => $validator->errors()]);
+        }
+    }
+
+    public function downloadTemplate()
+    {
+        $filePath = public_path('csv/product_csv.csv');
+        
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found');
+        }
+
+        return Response::download($filePath, 'product_csv.csv', [
+            'Content-Type' => 'application/csv',
+        ]);
     }
 }

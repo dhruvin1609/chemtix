@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 
 @section('content')
+<link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+
 
 <!-- Content Header (Page header) -->
 <section class="content-header">					
@@ -57,6 +59,8 @@
 @endsection
 
 @section('customJs')
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#supplierTable').DataTable();

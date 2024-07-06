@@ -35,7 +35,7 @@
                     </div>
                 </form>
                 </div>
-                <a href="{{ asset('csv/customer_product_csv.csv') }}" class="btn btn-info">Download template</a>
+                <a href="{{ route('customer_product.downloadTemplate') }}" class="btn btn-info">Download template</a>
   
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">
                         Upload Excel 

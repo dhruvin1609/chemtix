@@ -72,6 +72,28 @@
         </div>    
     </div>
 </section>
+<section class="our-values sec-space-both">
+    <div class="container">
+        <div class="row">
+            <div data-aos="fade-right" class="col-lg-6">
+                <img class="img-fluid" src="{{ asset('front-assets/chemtix_images/why_us_img.png') }}" style="height: 30rem;width:35rem;" alt="">
+            </div>
+            <div data-aos="fade-left" class="col-lg-6">
+                <div class="sec-title text-center">
+                    <h2>Why <span style="color:#0f4989">Us?</span></h2>
+                </div>
+                <ul  class="vision-text mt-5">
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Product Based on Comprehensive Research</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Customer Focused Approach</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Timely Reply</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Firm Assurance</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Regulatory Know-How</li>
+                    <li><i class="fa-solid fa-circle" style="margin-right: 15px;color:#0f4989"></i> Cost-Effective Pricing</li>
+                </ul>
+            </div>
+        </div>    
+    </div>
+</section>
 
 <section class="import-export mt-5">
     <div class="container">

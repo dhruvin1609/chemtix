@@ -7,7 +7,9 @@ use App\Imports\CustomerProductImport;
 use App\Models\Customer;
 use App\Models\CustomerProduct;
 use App\Models\Products;
+use Illuminate\Support\Facades\Response;
 use App\Models\Supplier;
+use Exception;
 use Illuminate\Http\Request;
 use Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -113,16 +115,28 @@ class CustomerProductController extends Controller
        return view('admin.search_customer.index',compact('data'));
     }
 
-    public function getData(Request $request){
-        $new_data=[];
-        $customer_id = $request->customer_name;
-        // dd($customer_id);
-        $data = CustomerProduct::where('supplier_id',$customer_id)->get();
-        foreach ($data as $item) {
-            $new_data[]=$item->product_id;
+    public function getData(Request $request,$id){
+        try{
+            $data = CustomerProduct::where('supplier_id',$id)->pluck('product_id')->toArray();
+            $product = Products::whereIn('id',$data)->with('getCategory')->get();
+            $data = view('admin.search_customer.index',compact('product'))->render();
+            return response()->json(['status' => true , 'data' => $data]);
+        }catch(Exception $e){
+            return response()->json(['status' => false]);
         }
-        $product = Products::whereIn('id',$new_data)->with('getCategory')->get();
-        // dd($product);
-        return view('admin.search_customer.index',compact('product'));
+       
+    }
+
+    public function downloadTemplate()
+    {
+        $filePath = public_path('csv/customer_product_csv.csv');
+        
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found');
+        }
+
+        return Response::download($filePath, 'customer_product_csv.csv', [
+            'Content-Type' => 'application/csv',
+        ]);
     }
 }

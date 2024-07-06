@@ -26,7 +26,7 @@
                             <img src="{{asset('images/product/'.$item->image)}}" alt="" class="product-img mt-3">
                         </div>
                         <div class="button btn-div d-flex justify-content-center align-items-center">
-                            <a href="" class="btn btn-sm product-btn">Inquiry this product</a>
+                            <a href="{{ route('front.contact') }}" class="btn btn-sm product-btn">Inquiry this product</a>
                         </div>
                         </div>
                         <div class="col-lg-6 mt-4 product-detail">

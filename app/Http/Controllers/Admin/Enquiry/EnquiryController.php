@@ -81,7 +81,7 @@ class EnquiryController extends Controller
             $enquiriesQuery->where('status', $status);
         }
     
-        $enquiry = $enquiriesQuery->paginate(10);
+        $enquiry = $enquiriesQuery->orderBy('id','DESC')->paginate(10);
     
         return view('admin.enquiry.list', compact('enquiry'));
     }
@@ -93,7 +93,7 @@ class EnquiryController extends Controller
             return response()->json(['status' => true ,'data'=>$data]);
         }
         catch(Exception $e){
-            dd($e);
+            return response()->json(['status' => false]);
         }
     }
 

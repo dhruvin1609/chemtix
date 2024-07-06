@@ -10,11 +10,41 @@
                 <h1>Create Product</h1>
             </div>
             <div class="col-sm-6 text-right">
+                <a href="{{ route('products.downloadTemplate') }}" class="btn btn-info">Download template</a>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop">
+                    Upload Excel 
+                </button>
                 <a href="{{route('products.list')}}" class="btn btn-primary">Back</a>
             </div>
+            
         </div>
     </div>
     <!-- /.container-fluid -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <form id="uploadCSV">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Upload Excel/CSV</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <label for="file" class="text-left">Upload CSV File</label>
+                <div class="form-group">  
+                   <input type="file" name="file" id="file" class="form-control">
+                   <p></p>
+                </div> 
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+        </div>
+    </form>
+    </div>
 </section>
 <!-- Main content -->
 <section class="content">
@@ -209,8 +239,51 @@
                 console.log('Something went wrong')
             }
         })
-    })
+    });
 
+    $('#uploadCSV').submit(function(event){
+        event.preventDefault();
+        var form = $(this)[0];
+        var data = new FormData(form);
+       var element = $(this);
+       $("button[type=submit]").prop('disabled',true)
+        $.ajax({
+            url:'{{route("products.import")}}',
+            type:'post',
+            enctype: 'multipart/form-data',
+            type:'post',
+            processData: false,
+            contentType: false,
+            cache: false,
+            data: data,
+            dataType:'json',
+            success : function(res){
+                $("button[type=submit]").prop('disabled',false)
+                if(res['status']  == true) {
+
+                    toastr.success('Created successfully');
+                    window.location.reload()
+
+                    // $('#name').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("")
+                    // $('#slug').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("")
+
+                }else{
+                    toastr.error('Something went wrong');
+                    var errors = res['errors'];
+                if(errors['file']){
+                    $('#file').addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['file'])
+                } else{
+                    $('#file').removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("")
+                }
+
+                }
+                
+            },
+            error : function(jqXHR,err){
+                console.log('Something went wrong')
+            }
+        })
+    })
       
 
        

@@ -168,7 +168,7 @@
                                 <li>
                                     <a>{{ genrealSetting()->company_email }}</a>
                                 </li>
-                                <li>
+                                <li style="text-align:justify;">
                                     <a href="">{{ genrealSetting()->address }}</a>
                                 </li>
                                 <li>
@@ -190,7 +190,7 @@
                                 <span>
                                     <i class="fa-solid fa-square-phone-flip"></i>
                                 </span>
-                                <p>Lets Talk</p>
+                                <p>Lets Talk <br> <span class="mail-text">+918866131877</span></p>
                             </div>
                             <div class="let_talk mh-5">
                                 <span>
@@ -198,19 +198,27 @@
                                 </span>
                                 <p>Business Inquiry <br> <span class="mail-text">info@chemtix.in</span></p>
                             </div>
-                            <div class="let_talk mh-5">
-                                <span>
-                                    <i class="fa-brands fa-telegram"></i>
-                                </span>
-                                <p>PR or Media</p>
-                            </div>
+                            <a href="{{ route('front.contact') }}">
+                                <div class="let_talk mh-5">
+                                    <span>
+                                        <i class="fa-brands fa-telegram"></i>
+                                    </span>
+                                    <p>Reach Us Now  <br> <span class="mail-text">Feel Free to Drop a message</span></p>
+                                </div>
+                            </a>
                         </div>
 
                     </div>
                 </div>
             </div>
 
-
+            <!-- resources/views/components/preloader.blade.php -->
+            <div id="preloader">
+                <div class="loader-content">
+                    <div class="spinner"></div>
+                    <h1>Loading...</h1>
+                </div>
+            </div>
 
             <div class="foot-btm">
                 <div class="container">
@@ -275,9 +283,13 @@
 
         <script>
             $(function() {
-                $(document).ready(function() {
-                    $('.select2').select2();
-                });
+                // document.addEventListener('DOMContentLoaded', function() {
+                //     const preloader = document.getElementById('preloader');
+                //     preloader.style.display = 'none';
+                // });
+
+                $("#preloader").hide();
+                $('.select2').select2();
                 $("#home_search").hide();
                 $(document).on('click', '#search_btn_nav', function(e) {
                     e.preventDefault();
@@ -289,6 +301,11 @@
                         $("#home_search").slideDown();
                     }
                 })
+                
+                // document.addEventListener('DOMContentLoaded', function() {
+                //     const preloader = document.getElementById('preloader');
+                //     preloader.style.display = 'none';
+                // });
             });
         </script>
         @yield('customJS')

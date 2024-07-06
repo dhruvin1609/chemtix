@@ -56,6 +56,12 @@
         </div>
         <div class="col-lg-6">
             <div class="mb-3">
+                <label for="" class="form-label">Details</label>
+            <textarea type="text" class="form-control" disabled aria-describedby="helpId" placeholder="">{{ $enquiry->note??'' }}</textarea>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-3">
                 <label for="" class="form-label">Remarks</label>
                 <input type="text" value="{{ $enquiry->remarks??'' }}" class="form-control" disabled aria-describedby="helpId" placeholder="" />
             </div>

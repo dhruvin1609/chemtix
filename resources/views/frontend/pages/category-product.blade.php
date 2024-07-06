@@ -28,7 +28,7 @@
                     </div>
                     @endif
                     <div class="button btn-div d-flex justify-content-center align-items-center">
-                        <a href="" class="btn btn-sm product-btn">Inquiry this product</a>
+                        <a href="{{ route('front.contact') }}" class="btn btn-sm product-btn">Inquiry this product</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 mt-4 product-detail">

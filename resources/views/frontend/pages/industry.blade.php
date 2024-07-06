@@ -54,8 +54,8 @@
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" data-aos-offset="200" class="row mt-5">
                 <div class="col-6 col-md-2">
                     <div class="inner-content">
-                        <img src="{{asset('front-assets/chemtix_images/pharmaceutical.png')}}" alt="">
-                        <span>PHARMACEUTICALS</span>
+                        <img src="{{asset('front-assets/chemtix_images/lab-chem-igm.png')}}" alt="">
+                        <span>Lab Chemicals</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">

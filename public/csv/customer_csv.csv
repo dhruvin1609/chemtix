@@ -1,2 +1,2 @@
-customer_name,customer_type,customer_city,customer_address,customer_state,customer_country,customer_phone,customer_phone_alter,customer_fax,customer_email,customer_website,contact_name,contact_phone,contact_designation,contact_email,customer_gst_no,customer_msme,customer_pan_no,customer_drug_lic_no
-test,customer,ahmedabad,chandlodiya,gujarat,india,9664760689,8523697410,123456,pdhruvin1234@gmail.com,http://127.0.0.1:8000/admin/dashboard,dhruvin,9664760689,CEO,dhruvin.patel@gmail.com,24GDVPP1498H,qwerty,GDVPP1498H,test number
+customer_name,customer_type,customer_city,customer_address,customer_state,customer_country,customer_phone,customer_phone_alter,customer_fax,customer_email,customer_website,customer_gst_no,customer_msme,customer_pan_no,customer_drug_lic_no
+test,customer,ahmedabad,chandlodiya,gujarat,india,9664760689,8523697410,123456,pdhruvin1234@gmail.com,http://127.0.0.1:8000/admin/dashboard,24GDVPP1498H,qwerty,GDVPP1498H,test number

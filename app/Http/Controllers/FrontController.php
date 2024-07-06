@@ -43,10 +43,13 @@ class FrontController extends Controller
     }
 
     public function contactSubmit(Request $request){
+        // dd($request->all());
         $ip = $request->ip();
         $data = geoip( $ip );
         $country = $data['country'];
+        if($request->has('product')){
             $product_cas_number = Products::where('id',$request->product)->first();
+        }
             $validator = Validator::make($request->all(),[
                 'name' => 'required',
                 'email' => 'required|email',
@@ -54,15 +57,20 @@ class FrontController extends Controller
                 'company_name' => 'required',
                 'qty_value'=>'required',
                 'qty_type'=>'required',
-                'product' => 'required',
             ]);
             if($validator->passes()){
                 $contact = new Enquiry();
                 $contact->name = $request->name;
                 $contact->email = $request->email;
                 $contact->phone = $request->phone_number;
-                $contact->product_id = $request->product;
-                $contact->cas_number = $request->cas_number;
+                if($request->has('other_product')){
+                    $contact->other_product = $request->other_product;
+                }else{
+                    $contact->product_id = $request->product;
+                }
+                if($product_cas_number){
+                    $contact->cas_number = $product_cas_number->cas_number;
+                }
                 $contact->country = $country;
                 $contact->company_name = $request->company_name;
                 $contact->qty = $request->qty_value .''.$request->qty_type;

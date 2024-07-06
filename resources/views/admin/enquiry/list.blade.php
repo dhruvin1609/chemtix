@@ -31,13 +31,13 @@
                     <table class="table table-hover text-nowrap dataTable">
                         <thead>
                             <tr>
+                                <th>Date</th>
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>product</th>
                                 <th>CAS Number</th>
                                 <th>Country</th>
-                                <th>Company Name</th>
                                 <th>Status</th>
                                 <th>Remarks</th>
                                 <th>view enquiry</th>
@@ -47,16 +47,16 @@
                             @if($enquiry->isNotEmpty())
                                 @foreach ($enquiry as $item)
                                 <tr data-enquiry-id="{{ $item->id }}">
+                                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}</td>
                                     <td>{{$item->name}}</td>
                                     <td>{{Str::limit($item->phone,5,'...')}}</td>
                                     <td>{{Str::limit($item->email, 10, '...')}}</td>
                                     <td>{!! ($item->getproduct ? $item->getproduct->title : '<p class="text-danger">Product is deleted</p>') !!}</td>
                                     <td>{{$item->cas_number}}</td>
                                     <td>{{$item->country}}</td>
-                                    <td>{{$item->company_name}}</td>                                      
                                     <td>
                                         
-                                        <select name="change_status" class="change_status">
+                                        <select name="change_status" class="change_status select2">
                                             <option value="pending" {{ $item->status === 'pending' ? 'selected' : '' }}>Pending</option>
                                             <option value="processing" {{ $item->status === 'processing' ? 'selected' : '' }}>Processing</option>
                                             <option value="quotation" {{ $item->status === 'quotation' ? 'selected' : '' }}>Quotation</option>

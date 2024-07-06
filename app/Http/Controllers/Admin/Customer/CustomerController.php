@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Customer;
 use App\Http\Controllers\Controller;
 use App\Imports\CustomerImport;
 use App\Models\Customer;
+use App\Models\SupplierContactDetails;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Validator;
@@ -30,10 +32,6 @@ class CustomerController extends Controller
             'customer_country'=> 'required',
             'customer_phone'=> 'required',
             'customer_email' => 'required|email',
-            'contact_name'=> 'required',
-            'contact_phone'=> 'required',
-            'contact_designation'=> 'required',
-            'contact_email'=> 'required|email',
             'customer_gst_no' => 'required',
             'customer_pan_no' => 'required',
             'customer_msme' => 'required',
@@ -53,10 +51,6 @@ class CustomerController extends Controller
             $customer->customer_fax = $request->customer_fax;
             $customer->customer_email = $request->customer_email;
             $customer->customer_website = $request->customer_website;
-            $customer->contact_name = $request->contact_name;
-            $customer->contact_phone = $request->contact_phone;
-            $customer->contact_designation = $request->contact_designation;
-            $customer->contact_email = $request->contact_email;
             $customer->customer_gst_no = $request->customer_gst_no;
             $customer->customer_pan_no = $request->customer_pan_no;
             $customer->customer_msme = $request->customer_msme;
@@ -64,6 +58,18 @@ class CustomerController extends Controller
             $customer->customer_drug_lic_no_2 = $request->customer_drug_lic_no_2;
 
             $customer->save();
+
+            if(isset($request->contact_details)){
+                foreach($request->contact_details as $key => $v){
+                    $contact = new SupplierContactDetails();
+                    $contact->customer_id = $customer->id;
+                    $contact->contact_name = $v['contact_name'];
+                    $contact->contact_phone = $v['contact_phone'];
+                    $contact->contact_designation = $v['contact_designation'];
+                    $contact->contact_email = $v['contact_email'];
+                    $contact->save();
+                }
+            }
 
             return response()->json(['status' => true]);
 
@@ -157,5 +163,17 @@ class CustomerController extends Controller
         }else{
             return response()->json(['status' => false , 'errors' => $validator->errors()]);
         }
+    }
+
+    public function downloadTemplate()
+    {
+        $filePath = public_path('csv/customer_csv.csv');
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found');
+        }
+
+        return Response::download($filePath, 'customer_csv.csv', [
+            'Content-Type' => 'application/csv',
+        ]);
     }
 }

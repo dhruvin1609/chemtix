@@ -1,12 +1,13 @@
 @extends('frontend.layouts.app')
 @section('content')
-    <section>
-        <div class="container-fluid">
-            <div class="about-title d-flex justify-content-center align-items-center">
-                <h1 style="color: #0f4989;">Contact us</h1>
-            </div>
+<section class="contact-section">
+    <div class="container-fluid">
+        <div class="contact-title d-flex justify-content-center align-items-center">
+            <h1 style="color: #0f4989;">Contact us</h1>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <section class="contact-form sec-space-both">
         <div class="container d-flex justify-content-center align-items-center">
@@ -79,7 +80,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <div class="mb-3">
+                                <div class="mb-3" id="dropdown_div">
                                     <select class="form-select select2" name="product" id="product">
                                         <option value="" selected>Select a product</option>
                                         @foreach ($products as $item)
@@ -90,6 +91,12 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="mb-3" id="input_div" style="display: none;">
+                                    <input type="text" class="form-control" name="other_product" id=""
+                                    aria-describedby="helpId" placeholder="Enter Product name" />
+                                </div>
+                                <a href="#" id="oth_prd" style="color: #0f4989;">Looking for other products?</a>
+                                <a href="#" id="show_select_div" style="display: none;color: #0f4989;" style="color: #0f4989;">Back To Our Products</a>
 
                             </div>
                             <div class="mb-3" id="cas_div" style="display: none;">
@@ -166,6 +173,22 @@
                 }
             );
 
+            $(document).on('click','#oth_prd',function(e){
+                e.preventDefault();
+                $("#input_div").show();
+                $("#dropdown_div").hide();
+                $("#show_select_div").show();
+                $("#oth_prd").hide();
+            });
+            $(document).on('click','#show_select_div',function(e){
+                e.preventDefault();
+                $("#dropdown_div").show();
+                $("#input_div").hide();
+                $("#show_select_div").hide();
+                $("#oth_prd").show();
+
+            })
+
             $("#contactForm").validate({
                 rules: {
                     name: {
@@ -180,9 +203,6 @@
                         digits: true,
                     },
                     company_name: {
-                        required: true,
-                    },
-                    product: {
                         required: true,
                     },
                     cas_number: {

@@ -1,9 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="{{ asset('admin-assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Chemtix</span>
+        {{-- <img src="{{ asset('admin-assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+            class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
+        <span class="brand-text font-weight-light"><img src="{{ asset('front-assets/chemtix_images/logo_white.png') }}" alt="" class="" style="height: 50px;margin-left:40px;"></span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -105,44 +105,6 @@
                         <p>Customers</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route('customer.search')}}" class="nav-link @if(Request::segment(2) == 'customers') active @endif">
-                        <!-- <i class="nav-icon fas fa-tag"></i> -->
-                        <i class="nav-icon fas fa-tag"></i>
-                        <p>Search by Customer</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('supplier.search')}}" class="nav-link @if(Request::segment(3) == 'suppliers') active @endif">
-                        <!-- <i class="nav-icon fas fa-tag"></i> -->
-                        <i class="nav-icon fas fa-tag"></i>
-                        <p>Search by Supplier</p>
-                    </a>
-                </li>
-                {{-- <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-shopping-bag"></i>
-                        <p>Orders</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon  fa fa-percent" aria-hidden="true"></i>
-                        <p>Discount</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon  fas fa-users"></i>
-                        <p>Users</p>
-                    </a>
-                </li> --}}
-                {{-- <li class="nav-item">
-                    <a href="pages.html" class="nav-link">
-                        <i class="nav-icon  far fa-file-alt"></i>
-                        <p>Pages</p>
-                    </a>
-                </li>							 --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
